@@ -1,6 +1,6 @@
 import { PropType } from "vue";
 declare const SliderCaptcha: {
-    new(...args: any[]): {
+    new (...args: any[]): {
         $: import("vue").ComponentInternalInstance;
         $data: {};
         $props: Partial<{
@@ -42,8 +42,8 @@ declare const SliderCaptcha: {
         }>> & {
             onVerifySuccess?: ((...args: any[]) => any) | ((...args: unknown[]) => any);
             onVerifyError?: ((...args: any[]) => any) | ((...args: unknown[]) => any);
+            onVerifyChange?: ((...args: any[]) => any) | ((...args: unknown[]) => any);
             onVerifyRefresh?: (callback: any) => any;
-            onVerifyChange?: (data: any, callback: any) => any;
         } & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, "backendImg" | "jigsawPosition" | "isBackendCheck" | "errHowTimesRefresh" | "allowEroor">;
         $attrs: {
             [x: string]: unknown;
@@ -56,7 +56,7 @@ declare const SliderCaptcha: {
         }>;
         $root: import("vue").ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, import("vue").ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}, {}, string>, {}>;
         $parent: import("vue").ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, import("vue").ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}, {}, string>, {}>;
-        $emit: ((event: "verifySuccess", ...args: unknown[]) => void) & ((event: "verifySuccess", ...args: any[]) => void) & ((event: "verifyError", ...args: unknown[]) => void) & ((event: "verifyError", ...args: any[]) => void) & ((event: "verifyRefresh", callback: any) => void) & ((event: "verifyChange", data: any, callback: any) => void);
+        $emit: ((event: "verifySuccess", ...args: unknown[]) => void) & ((event: "verifySuccess", ...args: any[]) => void) & ((event: "verifyError", ...args: unknown[]) => void) & ((event: "verifyError", ...args: any[]) => void) & ((event: "verifyChange", ...args: unknown[]) => void) & ((event: "verifyChange", ...args: any[]) => void) & ((event: "verifyRefresh", callback: any) => void);
         $el: any;
         $options: import("vue").ComponentOptionsBase<Readonly<import("vue").ExtractPropTypes<{
             backendImg: {
@@ -88,8 +88,8 @@ declare const SliderCaptcha: {
         }>> & {
             onVerifySuccess?: ((...args: any[]) => any) | ((...args: unknown[]) => any);
             onVerifyError?: ((...args: any[]) => any) | ((...args: unknown[]) => any);
+            onVerifyChange?: ((...args: any[]) => any) | ((...args: unknown[]) => any);
             onVerifyRefresh?: (callback: any) => any;
-            onVerifyChange?: (data: any, callback: any) => any;
         }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
             /**刷新 */
             verifyRefresh: (callback: any) => true;
@@ -98,7 +98,7 @@ declare const SliderCaptcha: {
             /**验证失败 */
             verifyError: any;
             /**后端校验调用 */
-            verifyChange: (data: any, callback: any) => true;
+            verifyChange: any;
         }, string, {
             backendImg: string;
             jigsawPosition: {
@@ -158,8 +158,8 @@ declare const SliderCaptcha: {
     }>> & {
         onVerifySuccess?: ((...args: any[]) => any) | ((...args: unknown[]) => any);
         onVerifyError?: ((...args: any[]) => any) | ((...args: unknown[]) => any);
+        onVerifyChange?: ((...args: any[]) => any) | ((...args: unknown[]) => any);
         onVerifyRefresh?: (callback: any) => any;
-        onVerifyChange?: (data: any, callback: any) => any;
     } & import("vue").ShallowUnwrapRef<{}> & {} & import("vue").ComponentCustomProperties & {};
     __isFragment?: never;
     __isTeleport?: never;
@@ -194,8 +194,8 @@ declare const SliderCaptcha: {
 }>> & {
     onVerifySuccess?: ((...args: any[]) => any) | ((...args: unknown[]) => any);
     onVerifyError?: ((...args: any[]) => any) | ((...args: unknown[]) => any);
+    onVerifyChange?: ((...args: any[]) => any) | ((...args: unknown[]) => any);
     onVerifyRefresh?: (callback: any) => any;
-    onVerifyChange?: (data: any, callback: any) => any;
 }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
     /**刷新 */
     verifyRefresh: (callback: any) => true;
@@ -204,7 +204,7 @@ declare const SliderCaptcha: {
     /**验证失败 */
     verifyError: any;
     /**后端校验调用 */
-    verifyChange: (data: any, callback: any) => true;
+    verifyChange: any;
 }, string, {
     backendImg: string;
     jigsawPosition: {
