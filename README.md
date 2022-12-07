@@ -5,9 +5,9 @@
 
 ## 安装
 
-npm install vue3-captcha
+npm install vue3-action-captcha
 
-yarn add vue3-captcha
+yarn add vue3-action-captcha
 
 ## 效果图
 
@@ -18,7 +18,7 @@ yarn add vue3-captcha
 
 ```html
 <script setup lang="ts">
-import { SliderCaptcha } from "vue3-captcha";
+import { SliderCaptcha } from "vue3-action-captcha";
 const verifySuccess = ()=>{
   console.log("验证成功")
 }
