@@ -1,5 +1,6 @@
 
-# 基于vue3的行为验证码。开箱即用，支持后端校验。
+## vue3-action-captcha
+`基于vue3的行为验证码。开箱即用，支持后端校验。`
 
 
 
@@ -47,12 +48,12 @@ const verifySuccess = ()=>{
 
 ## 事件
 
-| 事件名 | 说明     | 回调参数                       |
+| 事件名 | 说 明     | 回调参数                       |
 | :-------- | :------- | :-------------------------------- |
-| `verifySuccess`      | 验证成功时回调 |  |
-| `verifyError`      | 验证失败时回调 |  |
-| `verifyChange`      | 后端校验时回调 | `Function(positionData, Function(result:boolean / undefined))` |
-| `verifyRefresh`      | 刷新时回调 | `Function(positionData,Function({left:number,top:number} / undefined))` |
+| `verifySuccess`      |  `验证成功时回调`  |   |
+| `verifyError`      |  `验证失败时回调`  |   |
+| `verifyChange`      |  `后端校验时回调`  | `Function(positionData, Function(result:boolean / undefined))` |
+| `verifyRefresh`      |  `刷新时回调`  | `Function(positionData,Function({left:number,top:number} / undefined))` |
 
 
 ## 其他
