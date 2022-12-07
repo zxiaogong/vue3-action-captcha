@@ -11,7 +11,7 @@ yarn add vue3-captcha
 
 ## 效果图
 
-![App Screenshot](https://raw.githubusercontent.com/zxiaogong/vue3-captcha/feature/designsketch.gif)
+![App Screenshot](https://raw.githubusercontent.com/zxiaogong/vue3-action-captcha/feature/designsketch.gif)
 
 
 ## 使用方法/示例
@@ -27,7 +27,7 @@ const verifySuccess = ()=>{
 
 <template>
   <SliderCaptcha 
-  :backendImg="'https://raw.githubusercontent.com/zxiaogong/vue3-captcha/feature/src/imgs/1.jpg'"
+  :backendImg="'https://raw.githubusercontent.com/zxiaogong/vue3-action-captcha/feature/src/imgs/1.jpg'"
   @verifySuccess="verifySuccess" />
 </template>
 

@@ -1,5 +1,5 @@
 {
-  "name": "vue3-captcha",
+  "name": "vue3-action-captcha",
   "version": "0.0.0",
   "description": "vue3 滑块拼图验证。开箱即用，支持后端校验。",
   "private": false,
@@ -19,5 +19,9 @@
     "slider",
     "vue3",
     "captcha"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zxiaogong/vue3-action-captcha"
+  }
 }
