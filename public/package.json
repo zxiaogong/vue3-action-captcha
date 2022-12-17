@@ -1,6 +1,6 @@
 {
   "name": "vue3-action-captcha",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "vue3 滑块拼图验证。开箱即用，支持后端校验。",
   "private": false,
   "author": "zxiaogong",

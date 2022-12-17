@@ -5,33 +5,52 @@
         <div class="slider-captcha-img">
           <div class="other-operation">
             <div class="refresh-but" @click="onRefresh">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-arrow-clockwise"
+                viewBox="0 0 16 16"
+              >
                 <path
-                  d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z" />
+                  fill-rule="evenodd"
+                  d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"
+                />
+                <path
+                  d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"
+                />
               </svg>
             </div>
           </div>
           <img class="backend-img" :src="backendImg" />
-          <div class="slider-jigsaw" :style="{
-            left: patchPosition.left + 'px',
-            top: patchPosition.top + 'px',
-            transition: !butState.isPress ? '0.3s' : '0s',
-            opacity: !butState.isPress && isHidePuzzle ? 0 : 1,
-          }">
+          <div
+            class="slider-jigsaw"
+            :style="{
+              left: patchPosition.left + 'px',
+              top: patchPosition.top + 'px',
+              transition: !butState.isPress ? '0.3s' : '0s',
+              opacity: 1, //!butState.isPress && isHidePuzzle ? 0 : 1,
+            }"
+          >
             <img :src="puzzleImg" />
           </div>
-          <div class="slider-defect" :style="{
-            left: gapPosition.left + 'px',
-            top: gapPosition.top + 'px',
-            opacity: !butState.isPress && isHidePuzzle ? 0 : 1,
-          }">
+          <div
+            class="slider-defect"
+            :style="{
+              left: gapPosition.left + 'px',
+              top: gapPosition.top + 'px',
+              opacity: !butState.isPress && isHidePuzzle ? 0 : 1,
+            }"
+          >
             <img :src="defectImg" />
           </div>
-          <div class="slider-tip" :style="{
-            height: butState.state ? 20 + 'px' : 0,
-          }">
+          <div
+            class="slider-tip"
+            :style="{
+              height: butState.state ? 20 + 'px' : 0,
+            }"
+          >
             <span v-if="butState.state === 1">
               验证通过: 一共耗时
               <span style="color: #00c957">{{ takeUpTime }}s</span>
@@ -44,46 +63,86 @@
         </div>
         <div class="slider-but-box">
           <div class="slider-but-box-tip">向右滑动滑块进行正确拼合</div>
-          <div v-if="butState.state === 0" class="slider-static-but" :style="{
-            left: butState.left + 'px',
-            transition: !butState.isPress ? '0.3s' : '0s',
-          }" @mousedown="pressSliderBut">
+          <div
+            v-if="butState.state === 0"
+            class="slider-static-but"
+            :style="{
+              left: butState.left + 'px',
+              transition: !butState.isPress ? '0.3s' : '0s',
+            }"
+            @mousedown="pressSliderBut"
+          >
             <div class="slider-but">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                class="bi bi-forward-fill" viewBox="0 0 16 16">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-forward-fill"
+                viewBox="0 0 16 16"
+              >
                 <path
-                  d="m9.77 12.11 4.012-2.953a.647.647 0 0 0 0-1.114L9.771 5.09a.644.644 0 0 0-.971.557V6.65H2v3.9h6.8v1.003c0 .505.545.808.97.557z" />
+                  d="m9.77 12.11 4.012-2.953a.647.647 0 0 0 0-1.114L9.771 5.09a.644.644 0 0 0-.971.557V6.65H2v3.9h6.8v1.003c0 .505.545.808.97.557z"
+                />
               </svg>
             </div>
           </div>
-          <div v-else-if="butState.state === 1" class="slider-static-but2" :style="{
-            left: butState.left + 'px',
-            transition: !butState.isPress ? '0.3s' : '0s',
-          }">
+          <div
+            v-else-if="butState.state === 1"
+            class="slider-static-but2"
+            :style="{
+              left: butState.left + 'px',
+              transition: !butState.isPress ? '0.3s' : '0s',
+            }"
+          >
             <div class="slider-suc-but">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check"
-                viewBox="0 0 16 16">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-check"
+                viewBox="0 0 16 16"
+              >
                 <path
-                  d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
+                  d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"
+                />
               </svg>
             </div>
           </div>
-          <div v-else-if="butState.state === 2" class="slider-static-but3" :style="{
-            left: butState.left + 'px',
-            transition: !butState.isPress ? '0.3s' : '0s',
-          }">
+          <div
+            v-else-if="butState.state === 2"
+            class="slider-static-but3"
+            :style="{
+              left: butState.left + 'px',
+              transition: !butState.isPress ? '0.3s' : '0s',
+            }"
+          >
             <div class="slider-err-but">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x"
-                viewBox="0 0 16 16">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-x"
+                viewBox="0 0 16 16"
+              >
                 <path
-                  d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                  d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+                />
               </svg>
             </div>
           </div>
-          <div class="slider-road" :style="{ 'pointer-events': butState.isPress ? 'all' : 'none' }">
-            <div class="slider-road-backend" :style="{
-              backgroundColor: butState.isPress ? '#1E90FF' : '#999',
-            }"></div>
+          <div
+            class="slider-road"
+            :style="{ 'pointer-events': butState.isPress ? 'all' : 'none' }"
+          >
+            <div
+              class="slider-road-backend"
+              :style="{
+                backgroundColor: butState.isPress ? '#1E90FF' : '#999',
+              }"
+            ></div>
           </div>
         </div>
       </div>
@@ -141,14 +200,12 @@ const emits = defineEmits({
   /**验证失败 */
   verifyError: null,
   /**后端校验调用 */
-  verifyChange: null
+  verifyChange: null,
 });
 
-
-
 const backendImg = ref(props.backendImg);
-const puzzleImg = ref('');
-const defectImg = ref('');
+const puzzleImg = ref("");
+const defectImg = ref("");
 /**误差 */
 const allowEroor = props.allowEroor || 2;
 /**图片宽高 */
@@ -156,7 +213,6 @@ const puzzleWidth = 60;
 const puzzleHeight = 60;
 const imgWidth = 320;
 const imgHeight = 160;
-
 
 /**按钮状态 */
 const butState = reactive({
@@ -189,7 +245,7 @@ let sliderThread: any = null;
 /**失败次数 */
 let errorNum = 0;
 
-const isHidePuzzle = ref(true)
+const isHidePuzzle = ref(true);
 
 onBeforeMount(() => {
   calculationPuzzlePosition(
@@ -197,11 +253,11 @@ onBeforeMount(() => {
     props.jigsawPosition.top
   );
   drawJigsawPuzzle().then((res: string) => {
-    puzzleImg.value = res
-  })
+    puzzleImg.value = res;
+  });
   drawJigsawPuzzle(true).then((res: string) => {
-    defectImg.value = res
-  })
+    defectImg.value = res;
+  });
 });
 
 const calculationPuzzlePosition = (puzzleLeft?: number, puzzleTop?: number) => {
@@ -221,7 +277,7 @@ const calculationPuzzlePosition = (puzzleLeft?: number, puzzleTop?: number) => {
 
 /**鼠标按下 */
 const pressSliderBut = (e: any) => {
-  isHidePuzzle.value = false
+  isHidePuzzle.value = false;
   document.addEventListener("mousemove", moveSliderBut);
   document.addEventListener("mouseup", releaseSliderBut);
   takeUpTime.value = 0;
@@ -258,7 +314,7 @@ const releaseSliderBut = async () => {
   sliderTime = 0;
   let isSuccess = false;
   butState.isPress = false;
-  const errCaptcha = ()=>{
+  const errCaptcha = () => {
     /**失败 */
     errorNum += 1;
     butState.state = 2;
@@ -267,7 +323,7 @@ const releaseSliderBut = async () => {
       butState.left = 0;
       patchPosition.left = 0;
       let timer2: any = setTimeout(() => {
-        isHidePuzzle.value = true
+        isHidePuzzle.value = true;
         butState.state = 0;
         clearTimeout(timer);
         clearTimeout(timer2);
@@ -282,7 +338,7 @@ const releaseSliderBut = async () => {
         }
       }, 400);
     }, 500);
-  }
+  };
   /**先验证是否在误差内 */
   if (
     gapPosition.left - allowEroor < patchPosition.left &&
@@ -290,23 +346,23 @@ const releaseSliderBut = async () => {
   ) {
     /**判断是否需要后端验证 */
     if (props.isBackendCheck) {
-      isSuccess = await backendCheckCode()
+      isSuccess = await backendCheckCode();
     }
     /**调用对应结果 */
-    if((props.isBackendCheck && isSuccess) || !props.isBackendCheck){
+    if ((props.isBackendCheck && isSuccess) || !props.isBackendCheck) {
       butState.state = 1;
       emits("verifySuccess");
-    }else{
-      errCaptcha()
+    } else {
+      errCaptcha();
     }
   } else {
-    errCaptcha()
+    errCaptcha();
   }
 };
 const onRefresh = async () => {
   errorNum = 0;
   if (butState.state === 1) {
-    return
+    return;
   }
   await emits("verifyRefresh", (refreshData: any) => {
     if (refreshData) {
@@ -333,7 +389,7 @@ const backendCheckCode = (): Promise<boolean> => {
       (result: boolean | undefined) => {
         res(result as boolean);
       }
-    )
+    );
   });
 };
 
@@ -343,6 +399,25 @@ const randomNumber = (end: number, start: number) => {
 
 /**绘制拼图 */
 const drawJigsawPuzzle = (isDefect?: boolean): Promise<string> => {
+  const clearArcFun = (x: number, y: number, r: number, ctx: any) => {
+    var stepClear = 1; //别忘记这一步
+    clearArc(x, y, r);
+    function clearArc(x: number, y: number, radius: number) {
+      var calcWidth = radius - stepClear;
+      var calcHeight = Math.sqrt(radius * radius - calcWidth * calcWidth);
+      var posX = x - calcWidth;
+      var posY = y - calcHeight;
+
+      var widthX = 2.3 * calcWidth;
+      var heightY = 2 * calcHeight;
+
+      if (stepClear <= radius) {
+        ctx.clearRect(posX, posY, widthX, heightY);
+        stepClear += 1;
+        clearArc(x, y, radius);
+      }
+    }
+  };
   return new Promise((res, rej) => {
     const image = new Image();
     image.src = backendImg.value;
@@ -355,33 +430,39 @@ const drawJigsawPuzzle = (isDefect?: boolean): Promise<string> => {
       canvas.width = 60;
       canvas.height = 60;
       /**添加背景色*/
-      ctx.fillStyle = '#fff'
+      ctx.fillStyle = "#fff";
       ctx.shadowBlur = 20;
       /**画板位置、大小*/
       ctx.fillRect(0, 0, 60, 60);
-      // /**创建新路径*/
-      ctx.beginPath();
       if (isDefect) {
-        ctx.globalAlpha = 0.2
+        ctx.globalAlpha = 0.2;
       } else {
         ctx.lineWidth = 2;
-        ctx.strokeStyle = '#ffff00';
+        ctx.strokeStyle = "#ffff00";
+        ctx.beginPath();
+        ctx.lineWidth = 2;
+        ctx.moveTo(6, 14);
+        ctx.lineTo(6, 30);
+        ctx.stroke();
       }
-
+      // /**创建新路径*/
+      ctx.beginPath();
       ctx.arc(26, 10, 6, 15, Math.PI / 5, 0);
       ctx.arc(50, 34, 6, 4, Math.PI / 1.4, 0);
-      ctx.moveTo(6, 14)
-      ctx.lineTo(46, 14)
-      ctx.lineTo(46, 58)
-      ctx.lineTo(6, 58)
-      ctx.lineTo(6, 42)
-      ctx.arcTo(16, 42, 17, 32, 7)
-      ctx.arcTo(16, 32, 6, 26, 7)
-      ctx.lineTo(6, 30)
-      ctx.closePath()
-      ctx.stroke()
+      ctx.moveTo(6, 14);
+      ctx.lineTo(46, 14);
+      ctx.lineTo(46, 58);
+      ctx.lineTo(6, 58);
+      ctx.lineTo(6, 42);
+      // ctx.arcTo(16, 42, 17, 32, 7)
+      // ctx.arcTo(16, 32, 6, 26, 7)
+      ctx.lineTo(6, 40);
+      // ctx.closePath();
+      if (!isDefect) {
+        ctx.stroke();
+      }
       // 44*44
-      ctx.clip()
+      ctx.clip();
       // 在canvas绘制图片
       ctx.drawImage(
         _this,
@@ -390,32 +471,49 @@ const drawJigsawPuzzle = (isDefect?: boolean): Promise<string> => {
         imgWidth,
         imgHeight
       );
-      ctx.drawImage(image, -gapPosition.left, -gapPosition.top, 320, 160)
-      const imageData = ctx.getImageData(0, 0, 320, 320)
-      const data = imageData.data
+      ctx.drawImage(image, -gapPosition.left, -gapPosition.top, 320, 160);
+      if (!isDefect) {
+        ctx.beginPath();
+        ctx.lineWidth = 1;
+        ctx.fillStyle = "#fff";
+        ctx.arc(10, 36, 6, 4, Math.PI / 1, 0);
+        ctx.fill();
+        ctx.stroke();
+      } else {
+        clearArcFun(10, 36, 6, ctx);
+      }
+      const imageData = ctx.getImageData(0, 0, 320, 320);
+      if (window.devicePixelRatio) {
+        var width = canvas.width,
+          height = canvas.height;
+        canvas.height = height * window.devicePixelRatio;
+        canvas.width = width * window.devicePixelRatio;
+        ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+      }
+
+      const data = imageData.data;
       for (let i = 0; i < data.length; i += 4) {
         // 得到 RGBA 通道的值
-        let r = data[i]
-          , g = data[i + 1]
-          , b = data[i + 2]
+        let r = data[i],
+          g = data[i + 1],
+          b = data[i + 2];
         // 我们从最下面那张颜色生成器中可以看到在图片的右上角区域，有一小块在
         // 肉眼的观察下基本都是白色的，所以我在这里把 RGB 值都在 245 以上的
         // 的定义为白色
-        // 大家也可以自己定义的更精确，或者更宽泛一些
+        // 也可以自己定义的更精确，或者更宽泛一些
         if (r === 255 && g === 255 && b === 255) {
-          data[i + 3] = 0
+          data[i + 3] = 0;
         }
       }
-      ctx.putImageData(imageData, 0, 0)
+      ctx.putImageData(imageData, 0, 0);
       res(canvas.toDataURL("image/jpg", 1));
     };
     image.onerror = function () {
-      console.error('图片获取失败')
+      console.error("图片获取失败");
       rej("");
     };
   });
-}
-
+};
 </script>
 <style scoped lang="less">
 @import "./index.less";
