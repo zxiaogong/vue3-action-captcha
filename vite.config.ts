@@ -9,7 +9,7 @@ export default defineConfig({
   build: {
     outDir:"public/lib",
     lib: {
-      entry: path.resolve(__dirname, 'src/components/index.ts'),
+      entry: path.resolve(__dirname, 'src/components/*'),
       name: 'captcha',
       fileName: (format) => `captcha.${format}.js`
     },

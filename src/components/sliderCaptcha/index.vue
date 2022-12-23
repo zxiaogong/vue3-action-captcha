@@ -497,10 +497,7 @@ const drawJigsawPuzzle = (isDefect?: boolean): Promise<string> => {
         let r = data[i],
           g = data[i + 1],
           b = data[i + 2];
-        // 我们从最下面那张颜色生成器中可以看到在图片的右上角区域，有一小块在
-        // 肉眼的观察下基本都是白色的，所以我在这里把 RGB 值都在 245 以上的
-        // 的定义为白色
-        // 也可以自己定义的更精确，或者更宽泛一些
+        /**将白色设置为透明 */
         if (r === 255 && g === 255 && b === 255) {
           data[i + 3] = 0;
         }

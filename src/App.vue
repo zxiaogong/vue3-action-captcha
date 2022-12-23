@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { SliderCaptcha } from "./components/index";
+import { SliderCaptcha ,DragCaptcha} from "./components/index";
 // import { SliderCaptcha } from "../public/lib/captcha.es";
 import backImg from "./imgs/1.jpg";
 const verifySuccess = ()=>{
@@ -12,7 +12,8 @@ const verifyChange= (res:any,callback:(s:boolean)=>boolean)=>{
 </script>
 
 <template>
-  <SliderCaptcha :backendImg="backImg" @verifySuccess="verifySuccess"></SliderCaptcha>
+  <!-- <SliderCaptcha :backendImg="backImg" @verifySuccess="verifySuccess"></SliderCaptcha> -->
+  <DragCaptcha :backendImg="backImg" ></DragCaptcha>
 </template>
 
 <style scoped></style>
