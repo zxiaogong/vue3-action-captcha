@@ -385,6 +385,7 @@ const backendCheckCode = (): Promise<boolean> => {
         top: patchPosition.top,
         backendImg: backendImg.value,
         jigsawImg: puzzleImg.value,
+        elapsedTim:takeUpTime.value*1000
       },
       (result: boolean | undefined) => {
         res(result as boolean);
