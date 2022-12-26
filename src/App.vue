@@ -7,13 +7,15 @@ const verifySuccess = ()=>{
 }
 const verifyChange= (res:any,callback:(s:boolean)=>boolean)=>{
   console.log(res)
-  callback(true)
+  setTimeout(() => {
+    callback(true)
+  }, 3000);
 }
 </script>
 
 <template>
-  <!-- <SliderCaptcha :backendImg="backImg" @verifySuccess="verifySuccess"></SliderCaptcha> -->
-  <DragCaptcha :backendImg="backImg" ></DragCaptcha>
+  <SliderCaptcha :backendImg="backImg" @verifySuccess="verifySuccess" :isBackendCheck="true" @verifyChange="verifyChange"></SliderCaptcha>
+  <!-- <DragCaptcha :backendImg="backImg" ></DragCaptcha> -->
 </template>
 
 <style scoped></style>

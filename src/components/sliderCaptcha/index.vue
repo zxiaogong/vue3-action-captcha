@@ -45,20 +45,12 @@
           >
             <img :src="defectImg" />
           </div>
-          <div
-            class="slider-tip"
-            :style="{
-              height: butState.state ? 20 + 'px' : 0,
-            }"
-          >
-            <span v-if="butState.state === 1">
-              验证通过: 一共耗时
-              <span style="color: #00c957">{{ takeUpTime }}s</span>
-            </span>
-            <span v-if="butState.state === 2">
-              验证失败:
-              <span style="color: #e33"> 向右滑动滑块进行正确拼合 </span>
-            </span>
+          <div class="slider-tip">
+            <TimeTips
+              ref="tipRef"
+              :state="butState.state"
+              errTip="向右滑动滑块进行正确拼合"
+            />
           </div>
         </div>
         <div class="slider-but-box">
@@ -158,8 +150,15 @@ import {
   defineProps,
   PropType,
   defineEmits,
+  onMounted,
+  Ref,
 } from "vue";
+import TimeTips from "../common/timeTips/index.vue";
 
+const tipRef: Ref<any> = ref(null);
+onMounted(() => {
+  console.log(tipRef.value);
+});
 const props = defineProps({
   backendImg: {
     type: String,
@@ -235,9 +234,8 @@ const patchPosition = reactive({
 /**拖动位置 */
 let dragPosition = 0;
 
-/**过程时间 */
-let sliderTime = 0;
-let takeUpTime = ref(0);
+/**消耗的时间 */
+let takeUpTime = 0;
 
 /**拖动时计时的时间 */
 let sliderThread: any = null;
@@ -280,11 +278,7 @@ const pressSliderBut = (e: any) => {
   isHidePuzzle.value = false;
   document.addEventListener("mousemove", moveSliderBut);
   document.addEventListener("mouseup", releaseSliderBut);
-  takeUpTime.value = 0;
-  sliderThread = setInterval(() => {
-    sliderTime += 100;
-  }, 100);
-  sliderThread;
+  tipRef.value.startTime();
   dragPosition = e.clientX;
   butState.isPress = true;
 };
@@ -310,8 +304,8 @@ const releaseSliderBut = async () => {
   document.removeEventListener("mousemove", moveSliderBut);
   document.removeEventListener("mouseup", releaseSliderBut);
   clearInterval(sliderThread);
-  takeUpTime.value = sliderTime / 1000;
-  sliderTime = 0;
+  //停止计时
+  takeUpTime = tipRef.value.stopTime();
   let isSuccess = false;
   butState.isPress = false;
   const errCaptcha = () => {
@@ -350,6 +344,7 @@ const releaseSliderBut = async () => {
     }
     /**调用对应结果 */
     if ((props.isBackendCheck && isSuccess) || !props.isBackendCheck) {
+      tipRef.value.showTip();
       butState.state = 1;
       emits("verifySuccess");
     } else {
@@ -385,7 +380,7 @@ const backendCheckCode = (): Promise<boolean> => {
         top: patchPosition.top,
         backendImg: backendImg.value,
         jigsawImg: puzzleImg.value,
-        elapsedTim:takeUpTime.value*1000
+        elapsedTim: takeUpTime,
       },
       (result: boolean | undefined) => {
         res(result as boolean);
@@ -513,6 +508,6 @@ const drawJigsawPuzzle = (isDefect?: boolean): Promise<string> => {
   });
 };
 </script>
-<style scoped lang="less">
+<style lang="less" scoped>
 @import "./index.less";
 </style>

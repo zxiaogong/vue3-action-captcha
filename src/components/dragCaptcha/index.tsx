@@ -25,6 +25,8 @@ export default defineComponent({
   setup(props) {
     const imgdata: Ref<Array<any>> = ref([{}])
     let currentSelectIndex = -1
+    let offsetX = 0
+    let offsetY = 0
     /**页面初次渲染 */
     onMounted(() => {
       let imgList = []
@@ -42,7 +44,9 @@ export default defineComponent({
     })
 
     /**鼠标按下 */
-    const pressImgBlock = (index: number) => {
+    const pressImgBlock = (e: any, index: number) => {
+      offsetX = e.offsetX + 8
+      offsetY = e.offsetY + 8
       currentSelectIndex = index
       document.addEventListener("mousemove", dragImgBlock);
       document.addEventListener("mouseup", putDownImgBlock);
@@ -52,9 +56,8 @@ export default defineComponent({
       const x = e.clientX
       const y = e.clientY
       const tempImgData = imgdata.value
-      tempImgData[currentSelectIndex].left = x + 'px'
-      tempImgData[currentSelectIndex].top = y + 'px'
-      console.log(tempImgData)
+      tempImgData[currentSelectIndex].left = x - offsetX + 'px'
+      tempImgData[currentSelectIndex].top = y - offsetY + 'px'
       imgdata.value = tempImgData
     }
     /**松开 */
@@ -70,7 +73,7 @@ export default defineComponent({
           {
             imgdata.value.map((item, index) => {
               return (
-                <div class="content-img" style={item} key={index} onMousedown={() => pressImgBlock(index)}></div>
+                <div class="content-img" style={item} key={index} onMousedown={(e) => pressImgBlock(e, index)}></div>
               )
             })
           }

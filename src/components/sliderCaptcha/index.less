@@ -1,4 +1,5 @@
-@box-width:320px;
+@box-width: 320px;
+
 .root {
   width: 100%;
   height: 100%;
@@ -13,183 +14,177 @@
     width: 2.3em;
     height: 2.3em;
   }
-}
 
-.slider-captcha-content {
-  display: block;
-  position: relative;
-}
-
-.slider-captcha-box {
-  position: relative;
-
-  .slider-captcha-img {
-    width: @box-width;
-    height: 160px;
-    overflow: hidden;
+  .slider-captcha-content {
+    display: block;
     position: relative;
-
-    .backend-img {
-      width: 100%;
-      height: 100%;
-    }
-
-    .other-operation {
-      width: 20px;
-      height: 20px;
-      line-height: 20px;
-      position: absolute;
-      top: 4px;
-      right: 8px;
-      z-index: 20;
-      svg {
-        width: 1.5em;
-        height: 1.5em;
-      }
-      .refresh-but {
-        cursor: pointer;
-        color: #fff;
-      }
-    }
-
-    .slider-jigsaw {
-      opacity: 1;
-      position: absolute;
-      top: 0;
-      left: 0px;
-      width: 60px;
-      height: 60px;
-      background-repeat: no-repeat;
-      background-attachment: scroll;
-      background-size: 300px 140px;
-      box-sizing: border-box;
-      z-index: 10;
-    }
-
-    .slider-defect {
-      display: block;
-      position: absolute;
-      width: 60px;
-      height: 60px;
-      top: 0;
-      left: 0px;
-      z-index: 9;
-    }
-
-    .slider-tip {
-      width: 100%;
-      height: 0px;
-      line-height: 20px;
-      font-size: 10px;
-      overflow: hidden;
-      text-align: left;
-      position: absolute;
-      bottom: 0px;
-      left: 0px;
-      background-color: #FFE4C4;
-      z-index: 11;
-      padding: 0px 8px;
-      transition: 0.3s;
-    }
   }
 
-  .slider-but-box {
-    width: @box-width;
-    height: 32px;
-    margin-top: 16px;
-    // border-radius: 10px;
+  .slider-captcha-box {
     position: relative;
 
-    .slider-but-box-tip {
-      -webkit-touch-callout: none;
-      -webkit-user-select: none;
-      -khtml-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-      width: 100%;
-      height: 30px;
-      line-height: 30px;
-      font-size: 14px;
-      text-align: center;
-      color: #999;
-    }
-
-    .slider-road {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      // z-index: 1;
-      left: 0px;
-      top: 0px;
-      cursor: pointer;
-      // border-radius: 10px;
+    .slider-captcha-img {
+      width: @box-width;
+      height: 160px;
       overflow: hidden;
+      position: relative;
 
-      .slider-road-backend {
+      .backend-img {
         width: 100%;
         height: 100%;
-        transition: 0.5s;
-        opacity: 0.2;
       }
-    }
 
-    .slider-static-but {
-      width: 38px;
-      height: 38px;
-      // border: 1px solid #1E90FF;
-      box-sizing: border-box;
-      overflow: hidden;
-      position: absolute;
-      top: -3px;
-      cursor: pointer;
-      background-color: #1E90FF;
-      z-index: 1;
-
-      .slider-but {
-        text-align: center;
-        color: #fff;
-        margin-top: 1px;
+      .other-operation {
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        position: absolute;
+        top: 4px;
+        right: 8px;
+        z-index: 20;
 
         svg {
-          width: 2.1em;
-          height: 2.1em;
+          width: 1.5em;
+          height: 1.5em;
+        }
+
+        .refresh-but {
+          cursor: pointer;
+          color: #fff;
         }
       }
 
-    }
+      .slider-jigsaw {
+        opacity: 1;
+        position: absolute;
+        top: 0;
+        left: 0px;
+        width: 60px;
+        height: 60px;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+        background-size: 300px 140px;
+        box-sizing: border-box;
+        z-index: 10;
+      }
 
-    .slider-static-but2 {
-      width: 38px;
-      height: 38px;
-      background-color: #32CD32;
-      overflow: hidden;
-      position: absolute;
-      top: -3px;
-      cursor: pointer;
-      z-index: 1;
+      .slider-defect {
+        display: block;
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        top: 0;
+        left: 0px;
+        z-index: 9;
+      }
 
-      .slider-suc-but {
-        text-align: center;
-        color: #fff;
-        margin: auto;
+      .slider-tip {
+        width: 100%;
+        height: 20px;
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
       }
     }
 
-    .slider-static-but3 {
-      width: 38px;
-      height: 38px;
-      background-color: #E33;
-      overflow: hidden;
-      position: absolute;
-      top: -3px;
-      cursor: pointer;
-      z-index: 1;
+    .slider-but-box {
+      width: @box-width;
+      height: 32px;
+      margin-top: 16px;
+      // border-radius: 10px;
+      position: relative;
 
-      .slider-err-but {
+      .slider-but-box-tip {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        font-size: 14px;
         text-align: center;
-        color: #fff;
-        margin: auto;
+        color: #999;
+      }
+
+      .slider-road {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        // z-index: 1;
+        left: 0px;
+        top: 0px;
+        cursor: pointer;
+        // border-radius: 10px;
+        overflow: hidden;
+
+        .slider-road-backend {
+          width: 100%;
+          height: 100%;
+          transition: 0.5s;
+          opacity: 0.2;
+        }
+      }
+
+      .slider-static-but {
+        width: 38px;
+        height: 38px;
+        // border: 1px solid #1E90FF;
+        box-sizing: border-box;
+        overflow: hidden;
+        position: absolute;
+        top: -3px;
+        cursor: pointer;
+        background-color: #1E90FF;
+        z-index: 1;
+
+        .slider-but {
+          text-align: center;
+          color: #fff;
+          margin-top: 1px;
+
+          svg {
+            width: 2.1em;
+            height: 2.1em;
+          }
+        }
+
+      }
+
+      .slider-static-but2 {
+        width: 38px;
+        height: 38px;
+        background-color: #32CD32;
+        overflow: hidden;
+        position: absolute;
+        top: -3px;
+        cursor: pointer;
+        z-index: 1;
+
+        .slider-suc-but {
+          text-align: center;
+          color: #fff;
+          margin: auto;
+        }
+      }
+
+      .slider-static-but3 {
+        width: 38px;
+        height: 38px;
+        background-color: #E33;
+        overflow: hidden;
+        position: absolute;
+        top: -3px;
+        cursor: pointer;
+        z-index: 1;
+
+        .slider-err-but {
+          text-align: center;
+          color: #fff;
+          margin: auto;
+        }
       }
     }
   }
