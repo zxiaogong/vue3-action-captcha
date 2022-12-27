@@ -43,7 +43,7 @@ const verifySuccess = ()=>{
 | `backendImg` | `string` | **必选**. 背景图 |
 | `jigsawPosition` | `{ left: number, top: number} ` | **非必选**. 自定义拼图位置 |
 | `isBackendCheck` | `boolean ` | **非必选**. 是否开启后端校验 |
-| `errHowTimesRefresh` | `number ` | **非必选**. 验证失败几次后重新刷新拼图，默认5次 |
+| `errHowTimesRefresh` | `number ` | **非必选**. 验证失败几次后重新刷新拼图，默认1次 |
 | `allowEroor` | `number ` | **非必选**. 允许误差，默认2像素 |
 
 ## 事件
@@ -52,8 +52,8 @@ const verifySuccess = ()=>{
 | :-------- | :------- | :-------------------------------- |
 | `verifySuccess`      |  `验证成功时回调`  |   |
 | `verifyError`      |  `验证失败时回调`  |   |
-| `verifyChange`      |  `后端校验时回调`  | `Function(positionData, Function(result:boolean / undefined))` |
-| `verifyRefresh`      |  `刷新时回调`  | `Function(positionData,Function({left:number,top:number} / undefined))` |
+| `verifyChange`      |  `后端校验时回调`  | `Function(value, Function(result:boolean / undefined))` |
+| `verifyRefresh`      |  `刷新时回调`  | `Function()` |
 
 
 ## 其他

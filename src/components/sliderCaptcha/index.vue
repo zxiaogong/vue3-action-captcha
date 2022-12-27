@@ -23,7 +23,7 @@
               </svg>
             </div>
           </div>
-          <img class="backend-img" :src="backendImg" />
+          <img class="backend-img" :src="props.backendImg" />
           <div
             class="slider-jigsaw"
             :style="{
@@ -150,15 +150,12 @@ import {
   defineProps,
   PropType,
   defineEmits,
-  onMounted,
+  watch,
   Ref,
 } from "vue";
 import TimeTips from "../common/timeTips/index.vue";
 
 const tipRef: Ref<any> = ref(null);
-onMounted(() => {
-  console.log(tipRef.value);
-});
 const props = defineProps({
   backendImg: {
     type: String,
@@ -180,7 +177,7 @@ const props = defineProps({
   /**失败几次刷新 */
   errHowTimesRefresh: {
     type: Number,
-    default: 5,
+    default: 1,
   },
   allowEroor: {
     type: Number,
@@ -190,10 +187,7 @@ const props = defineProps({
 
 const emits = defineEmits({
   /**刷新 */
-  verifyRefresh: (callback) => {
-    callback();
-    return true;
-  },
+  verifyRefresh: null,
   /**验证成功 */
   verifySuccess: null,
   /**验证失败 */
@@ -202,7 +196,6 @@ const emits = defineEmits({
   verifyChange: null,
 });
 
-const backendImg = ref(props.backendImg);
 const puzzleImg = ref("");
 const defectImg = ref("");
 /**误差 */
@@ -257,6 +250,17 @@ onBeforeMount(() => {
     defectImg.value = res;
   });
 });
+
+watch(
+  () => props.jigsawPosition,
+  (nextJigsawPosition) => {
+    if (props.isBackendCheck)
+      calculationPuzzlePosition(
+        nextJigsawPosition.left,
+        nextJigsawPosition.top
+      );
+  }
+);
 
 const calculationPuzzlePosition = (puzzleLeft?: number, puzzleTop?: number) => {
   let left = 0;
@@ -324,12 +328,7 @@ const releaseSliderBut = async () => {
         timer = null;
         timer2 = null;
         /**满足失败次数后重新刷新 */
-        if (
-          props.errHowTimesRefresh &&
-          props.errHowTimesRefresh === errorNum + 1
-        ) {
-          onRefresh();
-        }
+        if (props.errHowTimesRefresh <= errorNum + 1) onRefresh();
       }, 400);
     }, 500);
   };
@@ -359,16 +358,10 @@ const onRefresh = async () => {
   if (butState.state === 1) {
     return;
   }
-  await emits("verifyRefresh", (refreshData: any) => {
-    if (refreshData) {
-      calculationPuzzlePosition(refreshData.left, refreshData.top);
-      if (refreshData.backendImg) {
-        backendImg.value = refreshData.backendImg;
-      }
-    } else {
-      calculationPuzzlePosition();
-    }
-  });
+  await emits("verifyRefresh");
+  if (!props.isBackendCheck) {
+    calculationPuzzlePosition();
+  }
 };
 
 const backendCheckCode = (): Promise<boolean> => {
@@ -378,7 +371,7 @@ const backendCheckCode = (): Promise<boolean> => {
       {
         left: patchPosition.left,
         top: patchPosition.top,
-        backendImg: backendImg.value,
+        backendImg: props.backendImg,
         jigsawImg: puzzleImg.value,
         elapsedTim: takeUpTime,
       },
@@ -416,7 +409,7 @@ const drawJigsawPuzzle = (isDefect?: boolean): Promise<string> => {
   };
   return new Promise((res, rej) => {
     const image = new Image();
-    image.src = backendImg.value;
+    image.src = props.backendImg;
     image.setAttribute("crossOrigin", "anonymous");
     image.onload = function () {
       const canvas = document.createElement("canvas");
