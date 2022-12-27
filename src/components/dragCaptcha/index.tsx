@@ -98,13 +98,15 @@ export default defineComponent({
         backupsOriginalImgInfo.index = replaceIndex
         tempPicInfo[replaceIndex].styles.left = (currentSelectIndex % 4) * 80 + 'px'
         tempPicInfo[replaceIndex].styles.top = parseInt(String(currentSelectIndex / 4)) * 80 + 'px'
-
       }
 
       pictureDataList.value = tempPicInfo
     }
     /**松开 */
     const putDownImgBlock = () => {
+      const tempPicInfo = pictureDataList.value
+      tempPicInfo[currentSelectIndex].styles.zIndex = 1
+      pictureDataList.value = tempPicInfo
       document.removeEventListener("mousemove", dragImgBlock);
       document.removeEventListener("mouseup", putDownImgBlock);
       currentSelectIndex = -1
