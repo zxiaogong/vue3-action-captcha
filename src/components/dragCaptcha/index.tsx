@@ -9,6 +9,17 @@ import {
 import imgs from "./imgs"
 import './index.less';
 
+interface PictureDataListType {
+  styles: {
+    left: string
+    top: string
+    backgroundImage: string
+    backgroundPosition: string
+    zIndex: number
+  },
+  key: number
+}
+
 export default defineComponent({
   props: {
     backendImg: {
@@ -23,10 +34,17 @@ export default defineComponent({
   },
 
   setup(props) {
-    const imgdata: Ref<Array<any>> = ref([{}])
+    const pictureDataList: Ref<PictureDataListType[]> = ref([])
     let currentSelectIndex = -1
     let offsetX = 0
     let offsetY = 0
+    let backupsOriginalImgInfo = {
+      styles: {
+        left: '',
+        top: '',
+      },
+      index: 0
+    }
     /**页面初次渲染 */
     onMounted(() => {
       let imgList = []
@@ -34,13 +52,17 @@ export default defineComponent({
         let x = (i % 4) * 80
         let y = parseInt(String(i / 4)) * 80
         imgList.push({
-          left: x + 'px',
-          top: y + 'px',
-          backgroundImage: `url(${props.backendImg})`,
-          backgroundPosition: `${-x}px ${-y}px`,
+          styles: {
+            left: x + 'px',
+            top: y + 'px',
+            backgroundImage: `url(${props.backendImg})`,
+            backgroundPosition: `${-x}px ${-y}px`,
+            zIndex: 1
+          },
+          key: i
         })
       }
-      imgdata.value = imgList
+      pictureDataList.value = imgList
     })
 
     /**鼠标按下 */
@@ -55,10 +77,31 @@ export default defineComponent({
     const dragImgBlock = (e: any) => {
       const x = e.clientX
       const y = e.clientY
-      const tempImgData = imgdata.value
-      tempImgData[currentSelectIndex].left = x - offsetX + 'px'
-      tempImgData[currentSelectIndex].top = y - offsetY + 'px'
-      imgdata.value = tempImgData
+      const tempPicInfo = pictureDataList.value
+      tempPicInfo[currentSelectIndex].styles.left = x - offsetX + 'px'
+      tempPicInfo[currentSelectIndex].styles.top = y - offsetY + 'px'
+      tempPicInfo[currentSelectIndex].styles.zIndex = 10
+
+      const column = Math.floor(x / 80)
+      const line = Math.floor(y / 80)
+      const replaceIndex = line * 4 + column
+      if (replaceIndex !== backupsOriginalImgInfo.index) {
+        const beforeIndex = backupsOriginalImgInfo.index
+        tempPicInfo[beforeIndex].styles = {
+          ...tempPicInfo[beforeIndex].styles,
+          ...backupsOriginalImgInfo.styles,
+        }
+        backupsOriginalImgInfo.styles = {
+          left: tempPicInfo[replaceIndex].styles.left,
+          top: tempPicInfo[replaceIndex].styles.top
+        }
+        backupsOriginalImgInfo.index = replaceIndex
+        tempPicInfo[replaceIndex].styles.left = (currentSelectIndex % 4) * 80 + 'px'
+        tempPicInfo[replaceIndex].styles.top = parseInt(String(currentSelectIndex / 4)) * 80 + 'px'
+
+      }
+
+      pictureDataList.value = tempPicInfo
     }
     /**松开 */
     const putDownImgBlock = () => {
@@ -69,11 +112,11 @@ export default defineComponent({
 
     return () => {
       return (
-        <div class="root">
+        <div class="drag-captcha-root">
           {
-            imgdata.value.map((item, index) => {
+            pictureDataList.value.map((item, index) => {
               return (
-                <div class="content-img" style={item} key={index} onMousedown={(e) => pressImgBlock(e, index)}></div>
+                <div class="content-img-block" style={item.styles} key={item.key} onMousedown={(e) => pressImgBlock(e, index)}></div>
               )
             })
           }

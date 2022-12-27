@@ -1,5 +1,5 @@
 <template>
-  <div class="root">
+  <div class="slider-captcha-root">
     <div class="slider-captcha-content">
       <div class="slider-captcha-box">
         <div class="slider-captcha-img">
