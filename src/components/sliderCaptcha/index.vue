@@ -30,7 +30,7 @@
               left: patchPosition.left + 'px',
               top: patchPosition.top + 'px',
               transition: !butState.isPress ? '0.3s' : '0s',
-              opacity: 1, //!butState.isPress && isHidePuzzle ? 0 : 1,
+              opacity: !butState.isPress && isHidePuzzle ? 0 : 1,
             }"
           >
             <img :src="puzzleImg" />
