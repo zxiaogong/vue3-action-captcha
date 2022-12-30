@@ -2,6 +2,7 @@ import {
   defineComponent,
   ref,
   Ref,
+  reactive,
   onMounted,
   onUpdated,
   watch,
@@ -9,7 +10,7 @@ import {
 import imgs from "./imgs"
 import './index.less';
 
-interface PictureDataListType {
+interface PictureDataType {
   styles: {
     left: string
     top: string
@@ -18,7 +19,7 @@ interface PictureDataListType {
     zIndex: number
     transition?: string
   },
-  key: number
+  key: number,
 }
 
 export default defineComponent({
@@ -35,7 +36,9 @@ export default defineComponent({
   },
 
   setup(props) {
-    const pictureDataList: Ref<PictureDataListType[]> = ref([])
+    let pictureData: { jigsawPuzzleList: PictureDataType[] } = reactive({
+      jigsawPuzzleList: []
+    })
     let currentSelectIndex = -1
     let offsetX = 0
     let offsetY = 0
@@ -48,7 +51,7 @@ export default defineComponent({
     }
     /**页面初次渲染 */
     onMounted(() => {
-      let imgList = []
+      let imgList: PictureDataType[] = []
       for (let i = 0; i < 8; i++) {
         let { x, y } = coordinate(i)
         imgList.push({
@@ -59,10 +62,10 @@ export default defineComponent({
             backgroundPosition: `${-x}px ${-y}px`,
             zIndex: 1
           },
-          key: i
+          key: i,
         })
       }
-      pictureDataList.value = imgList
+      pictureData.jigsawPuzzleList = imgList
     })
 
     /**计算坐标 */
@@ -87,23 +90,24 @@ export default defineComponent({
       document.addEventListener("mouseup", putDownImgBlock);
       backupsOriginalImgInfo.index = index
       backupsOriginalImgInfo.styles = {
-        left: pictureDataList.value[index].styles.left,
-        top: pictureDataList.value[index].styles.top,
+        left: pictureData.jigsawPuzzleList[index].styles.left,
+        top: pictureData.jigsawPuzzleList[index].styles.top,
       }
-      const imgList = pictureDataList.value
-      pictureDataList.value = imgList.map((item, i) => {
+      const imgList = pictureData.jigsawPuzzleList
+      for (let i = imgList.length; i--;) {
+        const item = imgList[i]
         if (i === index) {
           item.styles.zIndex = 10
         }
         item.styles.transition = '0s'
-        return item
-      })
+      }
+      pictureData.jigsawPuzzleList = imgList
     }
     /**拖拽 */
     const dragImgBlock = (e: any) => {
       const x = e.clientX
       const y = e.clientY
-      const tempPicInfo = pictureDataList.value
+      const tempPicInfo = pictureData.jigsawPuzzleList
       tempPicInfo[currentSelectIndex].styles.left = x - offsetX + 'px'
       tempPicInfo[currentSelectIndex].styles.top = y - offsetY + 'px'
 
@@ -117,7 +121,6 @@ export default defineComponent({
           ...tempPicInfo[beforeIndex].styles,
           ...backupsOriginalImgInfo.styles,
         }
-        console.log(replaceIndex)
 
         backupsOriginalImgInfo.styles = {
           left: tempPicInfo[replaceIndex].styles.left,
@@ -129,38 +132,39 @@ export default defineComponent({
         tempPicInfo[replaceIndex].styles.top = y + 'px'
       }
 
-      pictureDataList.value = tempPicInfo
+      pictureData.jigsawPuzzleList = tempPicInfo
     }
     /**松开 */
     const putDownImgBlock = () => {
-      const tempPicInfoList = pictureDataList.value
+      const tempPicInfoList = [...pictureData.jigsawPuzzleList]
 
       const replaceIndex = backupsOriginalImgInfo.index
-      const tempStyle = tempPicInfoList[currentSelectIndex]
-      tempPicInfoList[currentSelectIndex] = tempPicInfoList[replaceIndex]
-      tempPicInfoList[currentSelectIndex].styles.zIndex = 1
+      const currentPicData = tempPicInfoList[currentSelectIndex]
       let { x, y } = coordinate(replaceIndex)
-      tempPicInfoList[replaceIndex] = {
-        styles: {
-          ...tempStyle.styles,
-          left: x + 'px',
-          top: y + 'px',
-          zIndex:1,
-        },
-        key: tempStyle.key
+      tempPicInfoList[currentSelectIndex].styles = {
+        ...tempPicInfoList[currentSelectIndex].styles,
+        left: x + 'px',
+        top: y + 'px',
+        transition: "0.3s",
+        zIndex: 1,
       }
-      pictureDataList.value = tempPicInfoList
-      console.log(pictureDataList.value)
+      pictureData.jigsawPuzzleList = tempPicInfoList
       document.removeEventListener("mousemove", dragImgBlock);
       document.removeEventListener("mouseup", putDownImgBlock);
-      currentSelectIndex = -1
-    }
+      setTimeout(() => {
+        tempPicInfoList[currentSelectIndex] = tempPicInfoList[replaceIndex]
+        tempPicInfoList[replaceIndex] = currentPicData
+        currentSelectIndex = -1
+        pictureData.jigsawPuzzleList = tempPicInfoList
+        console.log(pictureData.jigsawPuzzleList)
+      }, 100);
 
+    }
     return () => {
       return (
-        <div class="drag-captcha-root" style={{ transition: '0.3s' }}>
+        <div class="drag-captcha-root" >
           {
-            pictureDataList.value.map((item, index) => {
+            pictureData.jigsawPuzzleList.map((item, index) => {
               return (
                 <div class="content-img-block" style={item.styles} key={item.key} onMousedown={(e) => pressImgBlock(e, index)}></div>
               )
