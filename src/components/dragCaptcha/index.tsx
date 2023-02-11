@@ -7,7 +7,6 @@ import {
   onUpdated,
   watch,
 } from 'vue'
-import imgs from "./imgs"
 import './index.less';
 
 interface PictureDataType {
@@ -29,9 +28,9 @@ export default defineComponent({
       default: '',
       required: true
     },
-    jigsawPosition: {
-      type: Number,
-      default: undefined,
+    crossPosition: {
+      type: Array<number>,
+      default: [2, 5],
     }
   },
 
@@ -52,19 +51,28 @@ export default defineComponent({
     /**页面初次渲染 */
     onMounted(() => {
       let imgList: PictureDataType[] = []
-      for (let i = 0; i < 8; i++) {
+      const subscript = [0, 1, 2, 3, 4, 5, 6, 7]
+      const tempSub = [...subscript]
+      const cross1 = props.crossPosition[0]
+      const cross2 = props.crossPosition[1]
+      subscript[cross1] = tempSub[cross2]
+      subscript[cross2] = tempSub[cross1]
+
+      subscript.forEach((item, i) => {
         let { x, y } = coordinate(i)
+        const crossPosition = coordinate(item)
+
         imgList.push({
           styles: {
             left: x + 'px',
             top: y + 'px',
             backgroundImage: `url(${props.backendImg})`,
-            backgroundPosition: `${-x}px ${-y}px`,
+            backgroundPosition: `${-crossPosition.x}px ${-crossPosition.y}px`,
             zIndex: 1
           },
           key: i,
         })
-      }
+      })
       pictureData.jigsawPuzzleList = imgList
     })
 
@@ -98,8 +106,11 @@ export default defineComponent({
         const item = imgList[i]
         if (i === index) {
           item.styles.zIndex = 10
+          item.styles.transition = '0s'
+        } else {
+          item.styles.transition = '0.3s'
         }
-        item.styles.transition = '0s'
+
       }
       pictureData.jigsawPuzzleList = imgList
     }
