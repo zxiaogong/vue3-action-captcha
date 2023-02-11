@@ -53,7 +53,7 @@ const verifySuccess = ()=>{
 | `verifySuccess`      |  `验证成功时回调`  |   |
 | `verifyError`      |  `验证失败时回调`  |   |
 | `verifyChange`      |  `后端校验时回调`  | `Function(value, Function(result:boolean / undefined))` |
-| `verifyRefresh`      |  `刷新时回调`  | `Function()` |
+| `verifyRefresh`      |  `刷新时回调`  |  |
 
 
 ## 其他
