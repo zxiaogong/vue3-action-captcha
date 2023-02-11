@@ -328,7 +328,7 @@ const releaseSliderBut = async () => {
         timer = null;
         timer2 = null;
         /**满足失败次数后重新刷新 */
-        if (props.errHowTimesRefresh <= errorNum + 1) onRefresh();
+        if (props.errHowTimesRefresh >= errorNum ) onRefresh();
       }, 400);
     }, 500);
   };
@@ -424,7 +424,7 @@ const drawJigsawPuzzle = (isDefect?: boolean): Promise<string> => {
       /**画板位置、大小*/
       ctx.fillRect(0, 0, 60, 60);
       if (isDefect) {
-        ctx.globalAlpha = 0.2;
+        ctx.globalAlpha = 0.16;
       } else {
         ctx.lineWidth = 2;
         ctx.strokeStyle = "#ffff00";
