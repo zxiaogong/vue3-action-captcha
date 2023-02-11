@@ -48,6 +48,13 @@ export default defineComponent({
       },
       index: -1
     }
+    /**记录操作过程中的参数 */
+    let operationParameter = {
+      startX: 0,
+      startY: 0,
+      endX: 0,
+      endY: 0,
+    }
     /**页面初次渲染 */
     onMounted(() => {
       let imgList: PictureDataType[] = []
@@ -93,6 +100,13 @@ export default defineComponent({
     const pressImgBlock = (e: any, index: number) => {
       offsetX = e.offsetX + 8
       offsetY = e.offsetY + 8
+      //重新记录操作参数
+      operationParameter = {
+        startX: offsetX,
+        startY: offsetY,
+        endX: 0,
+        endY: 0,
+      }
       currentSelectIndex = index
       document.addEventListener("mousemove", dragImgBlock);
       document.addEventListener("mouseup", putDownImgBlock);
@@ -146,7 +160,13 @@ export default defineComponent({
       pictureData.jigsawPuzzleList = tempPicInfo
     }
     /**松开 */
-    const putDownImgBlock = () => {
+    const putDownImgBlock = (e:any) => {
+      const clientX = e.clientX
+      const clientY = e.clientY
+      /**记录操作参数 */
+      operationParameter.endX=clientX
+      operationParameter.endY=clientY
+      
       const tempPicInfoList = [...pictureData.jigsawPuzzleList]
 
       const replaceIndex = backupsOriginalImgInfo.index
