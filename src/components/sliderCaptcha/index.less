@@ -86,7 +86,7 @@
 
     .slider-but-box {
       width: @box-width;
-      height: 32px;
+      height: 40px;
       margin-top: 16px;
       // border-radius: 10px;
       position: relative;
@@ -99,8 +99,9 @@
         -ms-user-select: none;
         user-select: none;
         width: 100%;
-        height: 30px;
-        line-height: 30px;
+        height: 40px;
+        box-sizing: border-box;
+        line-height: 40px;
         font-size: 14px;
         text-align: center;
         color: #999;
@@ -132,7 +133,7 @@
         box-sizing: border-box;
         overflow: hidden;
         position: absolute;
-        top: -3px;
+        top: 1px;
         cursor: pointer;
         background-color: #1E90FF;
         z-index: 1;
@@ -156,7 +157,7 @@
         background-color: #32CD32;
         overflow: hidden;
         position: absolute;
-        top: -3px;
+        top: 1px;
         cursor: pointer;
         z-index: 1;
 
@@ -167,15 +168,15 @@
         }
       }
 
-      .slider-static-but3 {
-        width: 38px;
-        height: 38px;
-        background-color: #E33;
-        overflow: hidden;
-        position: absolute;
-        top: -3px;
-        cursor: pointer;
-        z-index: 1;
+    .slider-static-but3 {
+      width: 38px;
+      height: 38px;
+      background-color: #E33;
+      overflow: hidden;
+      position: absolute;
+      top: 1px;
+      cursor: pointer;
+      z-index: 1;
 
         .slider-err-but {
           text-align: center;

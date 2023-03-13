@@ -14,8 +14,8 @@ const verifyChange= (res:any,callback:(s:boolean)=>boolean)=>{
 </script>
 
 <template>
-  <!-- <SliderCaptcha :backendImg="backImg" @verifySuccess="verifySuccess" :isBackendCheck="true" @verifyChange="verifyChange"></SliderCaptcha> -->
-  <DragCaptcha :backendImg="backImg" ></DragCaptcha>
+  <SliderCaptcha :backendImg="backImg" @verifySuccess="verifySuccess" :isBackendCheck="true" @verifyChange="verifyChange"></SliderCaptcha>
+  <!-- <DragCaptcha :backendImg="backImg" ></DragCaptcha> -->
 </template>
 
 <style scoped>
