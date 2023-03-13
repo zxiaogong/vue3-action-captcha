@@ -95,9 +95,10 @@
 
   .slider-but-box {
     width: @box-width;
-    height: 32px;
-    margin-top: 16px;
+    height: 40px;
+    margin-top: 12px;
     // border-radius: 10px;
+    // border: 1px solid #d1d0d0;
     position: relative;
 
     .slider-but-box-tip {
@@ -108,8 +109,9 @@
       -ms-user-select: none;
       user-select: none;
       width: 100%;
-      height: 30px;
-      line-height: 30px;
+      height: 40px;
+      box-sizing: border-box;
+      line-height: 38px;
       font-size: 14px;
       text-align: center;
       color: #999;
@@ -131,6 +133,7 @@
         height: 100%;
         transition: 0.5s;
         opacity: 0.2;
+        box-sizing: border-box;
       }
     }
 
@@ -141,7 +144,7 @@
       box-sizing: border-box;
       overflow: hidden;
       position: absolute;
-      top: -3px;
+      top: 1px;
       cursor: pointer;
       background-color: #1E90FF;
       z-index: 1;
@@ -165,7 +168,7 @@
       background-color: #32CD32;
       overflow: hidden;
       position: absolute;
-      top: -3px;
+      top: 1px;
       cursor: pointer;
       z-index: 1;
 
@@ -182,7 +185,7 @@
       background-color: #E33;
       overflow: hidden;
       position: absolute;
-      top: -3px;
+      top: 1px;
       cursor: pointer;
       z-index: 1;
 

@@ -12,7 +12,7 @@ const verifyChange= (res:any,callback:(s:boolean)=>boolean)=>{
 </script>
 
 <template>
-  <SliderCaptcha :backendImg="backImg" @verifySuccess="verifySuccess"></SliderCaptcha>
+  <SliderCaptcha :backendImg="backImg" @verifySuccess="verifySuccess" @verifyChange="verifyChange"></SliderCaptcha>
 </template>
 
 <style scoped></style>

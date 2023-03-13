@@ -5,52 +5,33 @@
         <div class="slider-captcha-img">
           <div class="other-operation">
             <div class="refresh-but" @click="onRefresh">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-arrow-clockwise"
-                viewBox="0 0 16 16"
-              >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z" />
                 <path
-                  fill-rule="evenodd"
-                  d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"
-                />
-                <path
-                  d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"
-                />
+                  d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z" />
               </svg>
             </div>
           </div>
           <img class="backend-img" :src="backendImg" />
-          <div
-            class="slider-jigsaw"
-            :style="{
-              left: patchPosition.left + 'px',
-              top: patchPosition.top + 'px',
-              transition: !butState.isPress ? '0.3s' : '0s',
-              opacity: 1, //!butState.isPress && isHidePuzzle ? 0 : 1,
-            }"
-          >
+          <div class="slider-jigsaw" :style="{
+            left: patchPosition.left + 'px',
+            top: patchPosition.top + 'px',
+            transition: !butState.isPress ? '0.3s' : '0s',
+            opacity: 1, //!butState.isPress && isHidePuzzle ? 0 : 1,
+          }">
             <img :src="puzzleImg" />
           </div>
-          <div
-            class="slider-defect"
-            :style="{
-              left: gapPosition.left + 'px',
-              top: gapPosition.top + 'px',
-              opacity: !butState.isPress && isHidePuzzle ? 0 : 1,
-            }"
-          >
+          <div class="slider-defect" :style="{
+            left: gapPosition.left + 'px',
+            top: gapPosition.top + 'px',
+            opacity: !butState.isPress && isHidePuzzle ? 0 : 1,
+          }">
             <img :src="defectImg" />
           </div>
-          <div
-            class="slider-tip"
-            :style="{
-              height: butState.state ? 20 + 'px' : 0,
-            }"
-          >
+          <div class="slider-tip" :style="{
+            height: butState.state === 0 || butState.state === 3 ? 0 : 20 + 'px',
+          }">
             <span v-if="butState.state === 1">
               验证通过: 一共耗时
               <span style="color: #00c957">{{ takeUpTime }}s</span>
@@ -62,87 +43,50 @@
           </div>
         </div>
         <div class="slider-but-box">
-          <div class="slider-but-box-tip">向右滑动滑块进行正确拼合</div>
-          <div
-            v-if="butState.state === 0"
-            class="slider-static-but"
-            :style="{
-              left: butState.left + 'px',
-              transition: !butState.isPress ? '0.3s' : '0s',
-            }"
-            @mousedown="pressSliderBut"
-          >
+          <div class="slider-but-box-tip" :style="{
+            color: !butState.isPress && butState.state !== 1 ? '#C7C7C7' : stateColor,
+            border: !butState.isPress ? '1px solid #EBEBEB' : `1px solid ${stateColor}`
+          }">向右滑动滑块进行正确拼合</div>
+          <div v-if="butState.state === 0 || butState.state === 3" class="slider-static-but" :style="{
+            left: butState.left + 'px',
+            transition: !butState.isPress ? '0.3s' : '0s',
+          }" @mousedown="pressSliderBut">
             <div class="slider-but">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-forward-fill"
-                viewBox="0 0 16 16"
-              >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                class="bi bi-forward-fill" viewBox="0 -1 16 18">
                 <path
-                  d="m9.77 12.11 4.012-2.953a.647.647 0 0 0 0-1.114L9.771 5.09a.644.644 0 0 0-.971.557V6.65H2v3.9h6.8v1.003c0 .505.545.808.97.557z"
-                />
+                  d="m9.77 12.11 4.012-2.953a.647.647 0 0 0 0-1.114L9.771 5.09a.644.644 0 0 0-.971.557V6.65H2v3.9h6.8v1.003c0 .505.545.808.97.557z" />
               </svg>
             </div>
           </div>
-          <div
-            v-else-if="butState.state === 1"
-            class="slider-static-but2"
-            :style="{
-              left: butState.left + 'px',
-              transition: !butState.isPress ? '0.3s' : '0s',
-            }"
-          >
+          <div v-else-if="butState.state === 1" class="slider-static-but2" :style="{
+            left: butState.left + 'px',
+            transition: !butState.isPress ? '0.3s' : '0s',
+          }">
             <div class="slider-suc-but">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-check"
-                viewBox="0 0 16 16"
-              >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check"
+                viewBox="-1 -1 18 18">
                 <path
-                  d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"
-                />
+                  d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
               </svg>
             </div>
           </div>
-          <div
-            v-else-if="butState.state === 2"
-            class="slider-static-but3"
-            :style="{
-              left: butState.left + 'px',
-              transition: !butState.isPress ? '0.3s' : '0s',
-            }"
-          >
+          <div v-else-if="butState.state === 2" class="slider-static-but3" :style="{
+            left: butState.left + 'px',
+            transition: !butState.isPress ? '0.3s' : '0s',
+          }">
             <div class="slider-err-but">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-x"
-                viewBox="0 0 16 16"
-              >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x"
+                viewBox="-1 -1 18 18">
                 <path
-                  d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
-                />
+                  d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
               </svg>
             </div>
           </div>
-          <div
-            class="slider-road"
-            :style="{ 'pointer-events': butState.isPress ? 'all' : 'none' }"
-          >
-            <div
-              class="slider-road-backend"
-              :style="{
-                backgroundColor: butState.isPress ? '#1E90FF' : '#999',
-              }"
-            ></div>
+          <div class="slider-road" :style="{ 'pointer-events': butState.isPress ? 'all' : 'none' }">
+            <div class="slider-road-backend" :style="{
+              backgroundColor: stateColor,
+            }"></div>
           </div>
         </div>
       </div>
@@ -158,7 +102,9 @@ import {
   defineProps,
   PropType,
   defineEmits,
+  computed,
 } from "vue";
+
 
 const props = defineProps({
   backendImg: {
@@ -219,6 +165,7 @@ const butState = reactive({
   left: 0,
   isPress: false,
   state: 0,
+  stateColor: ''
 });
 
 /**缺失的拼图位置 */
@@ -231,6 +178,18 @@ const patchPosition = reactive({
   left: 0,
   top: 0,
 });
+
+const stateColor = computed(() => {
+  console.log(butState.state)
+  switch (butState.state) {
+    case 1:
+      return '#00c957'
+    case 3:
+      return '#1E90FF'
+    default:
+      return '#999999'
+  }
+})
 
 /**拖动位置 */
 let dragPosition = 0;
@@ -277,6 +236,7 @@ const calculationPuzzlePosition = (puzzleLeft?: number, puzzleTop?: number) => {
 
 /**鼠标按下 */
 const pressSliderBut = (e: any) => {
+  butState.state = 3;
   isHidePuzzle.value = false;
   document.addEventListener("mousemove", moveSliderBut);
   document.addEventListener("mouseup", releaseSliderBut);
@@ -290,18 +250,31 @@ const pressSliderBut = (e: any) => {
 };
 /**滑动 */
 const moveSliderBut = (e: any) => {
-  const x = e.clientX - dragPosition;
+  const x = e.clientX - dragPosition
   if (butState.isPress) {
-    butState.left = x;
+    // butState.left = x
+    let tolerance = 0
+    if (x < 80) {
+      tolerance = Math.trunc(x / 8)
+    } else if (x < 160) {
+      tolerance = Math.trunc(x / 10)
+    } else if (x < 240) {
+      tolerance = Math.trunc(x / 12)
+    } else if (x < 300) {
+      tolerance = Math.trunc(x / 14)
+    }else {
+      tolerance = Math.trunc(x / 16)
+    }
+
     if (x < 0) {
       butState.left = 0;
       patchPosition.left = 0;
-    } else if (x >= 0 && x < imgWidth - puzzleWidth + 2) {
-      butState.left = x;
-      patchPosition.left = x;
+    } else if (x >= 0 && x < imgWidth - 40) {
+      butState.left = x + 2.5;
+      patchPosition.left = x - tolerance;
     } else {
-      butState.left = imgWidth - puzzleWidth + 2;
-      patchPosition.left = imgWidth - puzzleWidth;
+      butState.left = imgWidth - puzzleWidth + 21;
+      patchPosition.left = imgWidth - puzzleWidth + 2;
     }
   }
 };
