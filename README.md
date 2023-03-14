@@ -41,7 +41,7 @@ const verifySuccess = ()=>{
 | :-------- | :------- | :------------------------- |
 | `backendImg` | `string` | **必选**. 背景图 |
 | `jigsawPosition` | `{ left: number, top: number} ` | **非必选**. 自定义拼图位置 |
-| `isBackendCheck` | `boolean ` | **非必选**. 是否开启后端校验（开启后刷新拼图需要更改jigsawPosition参数，视图才会更新） |
+| `isBackendCheck` | `boolean ` | **非必选**. 是否开启后端校验，开启后进行验证会调用verifyChange方法 |
 | `errHowTimesRefresh` | `number ` | **非必选**. 验证失败几次后重新刷新拼图，默认1次 |
 | `allowEroor` | `number ` | **非必选**. 允许误差，默认2像素 |
 
@@ -51,7 +51,7 @@ const verifySuccess = ()=>{
 | :-------- | :------- | :------------------------- |
 | `backendImg` | `string` | **必选**. 背景图 |
 | `crossPosition` | `Array<number>` | **非必选**. 对换的拼图位置0~7，例如:[2,4] |
-| `isBackendCheck` | `boolean ` | **非必选**. 是否开启后端校验（开启后刷新拼图需要更改jigsawPosition参数，视图才会更新） |
+| `isBackendCheck` | `boolean ` | **非必选**. 是否开启后端校验，开启后进行验证会调用verifyChange方法 |
 | `errHowTimesRefresh` | `number ` | **非必选**. 验证失败几次后重新刷新拼图，默认1次 |
 
 ## 事件

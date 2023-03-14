@@ -1,6 +1,6 @@
 <script lang="ts">
 export default {
-  name:'slider-captcha'
+  name: 'slider-captcha'
 }
 </script>
 <template>
@@ -19,15 +19,12 @@ export default {
             </div>
           </div>
           <img class="backend-img" :src="props.backendImg" />
-          <div
-            class="slider-jigsaw"
-            :style="{
-              left: patchPosition.left + 'px',
-              top: patchPosition.top + 'px',
-              transition: !butState.isPress ? '0.3s' : '0s',
-              opacity: !butState.isPress && isHidePuzzle ? 0 : 1,
-            }"
-          >
+          <div class="slider-jigsaw" :style="{
+            left: patchPosition.left + 'px',
+            top: patchPosition.top + 'px',
+            transition: !butState.isPress ? '0.3s' : '0s',
+            opacity: !butState.isPress && isHidePuzzle ? 0 : 1,
+          }">
             <img :src="puzzleImg" />
           </div>
           <div class="slider-defect" :style="{
@@ -38,11 +35,8 @@ export default {
             <img :src="defectImg" />
           </div>
           <div class="slider-tip">
-            <TimeTips
-              ref="tipRef"
-              :state="butState.state===0||butState.state===3 ? 0 : butState.state"
-              errTip="向右滑动滑块进行正确拼合"
-            />
+            <TimeTips ref="tipRef" :state="butState.state === 0 || butState.state === 3 ? 0 : butState.state"
+              errTip="向右滑动滑块进行正确拼合" />
           </div>
         </div>
         <div class="slider-but-box">
@@ -224,11 +218,10 @@ onBeforeMount(() => {
 watch(
   () => props.jigsawPosition,
   (nextJigsawPosition) => {
-    if (props.isBackendCheck)
-      calculationPuzzlePosition(
-        nextJigsawPosition.left,
-        nextJigsawPosition.top
-      );
+    calculationPuzzlePosition(
+      nextJigsawPosition.left,
+      nextJigsawPosition.top
+    );
   }
 );
 
@@ -271,7 +264,7 @@ const moveSliderBut = (e: any) => {
       tolerance = Math.trunc(x / 12)
     } else if (x < 300) {
       tolerance = Math.trunc(x / 14)
-    }else {
+    } else {
       tolerance = Math.trunc(x / 16)
     }
 
@@ -312,7 +305,7 @@ const releaseSliderBut = async () => {
         timer = null;
         timer2 = null;
         /**满足失败次数后重新刷新 */
-        if (props.errHowTimesRefresh <= errorNum ) onRefresh();
+        if (props.errHowTimesRefresh <= errorNum) onRefresh();
       }, 400);
     }, 500);
   };
@@ -343,9 +336,7 @@ const onRefresh = async () => {
     return;
   }
   await emits("verifyRefresh");
-  if (!props.isBackendCheck) {
-    calculationPuzzlePosition();
-  }
+  calculationPuzzlePosition(props.jigsawPosition.left, props.jigsawPosition.top)
 };
 
 const backendCheckCode = (): Promise<boolean> => {
