@@ -1,8 +1,3 @@
-<script lang="ts">
-export default {
-  name: 'slider-captcha'
-}
-</script>
 <template>
   <div class="slider-captcha-root">
     <div class="slider-captcha-content">
@@ -479,3 +474,8 @@ const drawJigsawPuzzle = (isDefect?: boolean): Promise<string> => {
 <style lang="less" scoped>
 @import "./index.less";
 </style>
+<script lang="ts">
+export default {
+  name: 'slider-captcha'
+}
+</script>
