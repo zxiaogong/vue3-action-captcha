@@ -1,13 +1,14 @@
 import {
   defineComponent,
   ref,
-  Ref,
   reactive,
   onMounted,
-  onUpdated,
   watch,
 } from 'vue'
+import TimeTips from "../common/timeTips/index.vue";
+import RefreshBut from "../common/refreshBut/index.vue";
 import './index.less';
+
 
 interface PictureDataType {
   styles: {
@@ -22,19 +23,42 @@ interface PictureDataType {
 }
 
 export default defineComponent({
+  name: 'drag-captcha',
   props: {
+    //背景图
     backendImg: {
       type: String,
       default: '',
       required: true
     },
+    //对换的图片
     crossPosition: {
       type: Array<number>,
-      default: [2, 5],
-    }
+    },
+    /**失败几次刷新 */
+    errHowTimesRefresh: {
+      type: Number,
+      default: 1,
+    },
+    /**是否需要后端校验 */
+    isBackendCheck: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  emit: {
+    verifyRefresh: null,
+    /**验证成功 */
+    verifySuccess: null,
+    /**验证失败 */
+    verifyError: null,
+    /**后端校验调用 */
+    verifyChange: null,
   },
 
-  setup(props) {
+
+  setup(props, { emit }) {
+
     let pictureData: { jigsawPuzzleList: PictureDataType[] } = reactive({
       jigsawPuzzleList: []
     })
@@ -55,13 +79,42 @@ export default defineComponent({
       endX: 0,
       endY: 0,
     }
+    let cross1 = 0
+    let cross2 = 0
+    const tipRef = ref<any>()
+    const verifyState = ref<number>(0)
+    let initImgSafe: PictureDataType[] = []
+    let errNum = 0
+    let isOver = true
+
+    watch(props, () => {
+      initVerifyData()
+    })
     /**页面初次渲染 */
     onMounted(() => {
+      initVerifyData()
+    })
+    const initVerifyData = () => {
+      const random = (noNum?: number): number => {
+        const randomNum = Math.floor(Math.random() * (7 - 0))
+        if (noNum === undefined || randomNum !== noNum) {
+          return randomNum
+        } else {
+          return random(noNum)
+        }
+      }
       let imgList: PictureDataType[] = []
       const subscript = [0, 1, 2, 3, 4, 5, 6, 7]
       const tempSub = [...subscript]
-      const cross1 = props.crossPosition[0]
-      const cross2 = props.crossPosition[1]
+      const { crossPosition } = props
+      if (crossPosition?.length && crossPosition?.length >= 2 && crossPosition[0] !== crossPosition[1]) {
+        cross1 = crossPosition[0]
+        cross2 = crossPosition[1]
+      } else {
+        cross1 = random()
+        cross2 = random(cross1)
+      }
+
       subscript[cross1] = tempSub[cross2]
       subscript[cross2] = tempSub[cross1]
 
@@ -81,7 +134,8 @@ export default defineComponent({
         })
       })
       pictureData.jigsawPuzzleList = imgList
-    })
+      initImgSafe = imgList
+    }
 
     /**计算坐标 */
     const coordinate = (index: number): { x: number, y: number } => {
@@ -98,12 +152,17 @@ export default defineComponent({
 
     /**鼠标按下 */
     const pressImgBlock = (e: any, index: number) => {
+      if (!isOver) {
+        return
+      }
+      isOver = false
+      tipRef.value.startTime()
       offsetX = e.offsetX + 8
       offsetY = e.offsetY + 8
       //重新记录操作参数
       operationParameter = {
-        startX: offsetX,
-        startY: offsetY,
+        startX: e.clientX,
+        startY: e.clientY,
         endX: 0,
         endY: 0,
       }
@@ -160,15 +219,14 @@ export default defineComponent({
       pictureData.jigsawPuzzleList = tempPicInfo
     }
     /**松开 */
-    const putDownImgBlock = (e:any) => {
+    const putDownImgBlock = (e: any) => {
+
       const clientX = e.clientX
       const clientY = e.clientY
       /**记录操作参数 */
-      operationParameter.endX=clientX
-      operationParameter.endY=clientY
-      
+      operationParameter.endX = clientX
+      operationParameter.endY = clientY
       const tempPicInfoList = [...pictureData.jigsawPuzzleList]
-
       const replaceIndex = backupsOriginalImgInfo.index
       const currentPicData = tempPicInfoList[currentSelectIndex]
       let { x, y } = coordinate(replaceIndex)
@@ -182,14 +240,56 @@ export default defineComponent({
       pictureData.jigsawPuzzleList = tempPicInfoList
       document.removeEventListener("mousemove", dragImgBlock);
       document.removeEventListener("mouseup", putDownImgBlock);
+      //停止计时
+      const processTime = tipRef.value.stopTime();
       setTimeout(() => {
         tempPicInfoList[currentSelectIndex] = tempPicInfoList[replaceIndex]
         tempPicInfoList[replaceIndex] = currentPicData
         currentSelectIndex = -1
         pictureData.jigsawPuzzleList = tempPicInfoList
         console.log(pictureData.jigsawPuzzleList)
+        if (tempPicInfoList[cross1].key === cross2 && tempPicInfoList[cross2].key === cross1) {
+          verifyState.value = 1
+          if (props.isBackendCheck) {
+            emit('verifyChange', {
+              ...operationParameter,
+              processTime
+            }, (result: boolean | undefined) => {
+              if (result) {
+                emit("verifySuccess")
+              } else {
+                emit("verifyError")
+                errLaterRefreshImg()
+              }
+            })
+          } else {
+            emit("verifySuccess")
+          }
+        } else {
+          emit("verifyError");
+          verifyState.value = 2
+          errLaterRefreshImg()
+          setTimeout(() => {
+            verifyState.value = 0
+          }, 900);
+        }
       }, 100);
+    }
+    const errLaterRefreshImg = () => {
+      setTimeout(() => {
+        isOver = true
+        errNum++
+        if (errNum >= props.errHowTimesRefresh) {
+          onRefresh()
+        } else {
+          pictureData.jigsawPuzzleList = initImgSafe
+        }
+      }, 900);
 
+    }
+    const onRefresh = () => {
+      emit('verifyRefresh')
+      initVerifyData()
     }
     return () => {
       return (
@@ -201,6 +301,10 @@ export default defineComponent({
               )
             })
           }
+          <div style={{ width: '100%', height: '20px', position: 'absolute', left: 0, bottom: 0 }}>
+            <TimeTips ref={tipRef} state={verifyState.value}></TimeTips>
+          </div>
+          <RefreshBut onClick={() => onRefresh()}></RefreshBut>
         </div>
       )
     }

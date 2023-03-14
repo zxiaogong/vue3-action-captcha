@@ -1,11 +1,8 @@
 <template>
   <div class="time-tips-root">
-    <div
-      class="time-tips-root-content"
-      :style="{
-        height: props.state ? 20 + 'px' : 0,
-      }"
-    >
+    <div class="time-tips-root-content" :style="{
+      height: props.state ? 20 + 'px' : 0,
+    }">
       <span v-show="props.state === 1">
         验证通过:&nbsp;一共耗时
         <span style="color: #00c957">{{ takeUpTime }}s</span>
@@ -33,10 +30,10 @@ const takeUpTime = ref(0);
 let timerThread: any = null;
 let afterTime = 0;
 const startTime = () => {
+  timerThread = 0
   timerThread = setInterval(() => {
     afterTime += 100;
   }, 100);
-  timerThread;
 };
 const stopTime = () => {
   takeUpTime.value = afterTime / 1000;

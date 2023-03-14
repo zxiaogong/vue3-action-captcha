@@ -1,8 +1,3 @@
-import SliderCaptcha from "./sliderCaptcha/index.vue"
-import DragCaptcha from "./dragCaptcha/index"
-// import DragCaptcha from "./dragCaptcha/index.vue"
+export { default as sliderCaptcha } from "./sliderCaptcha/index.vue"
+export { default as DragCaptcha } from "./dragCaptcha/index"
 
-export {
-  SliderCaptcha,
-  DragCaptcha
-}

@@ -35,8 +35,7 @@ const verifySuccess = ()=>{
 
 ```
 
-
-## API 
+## 滑动拼图API 
 
 | 属性 | 类型     | 描述                |
 | :-------- | :------- | :------------------------- |
@@ -45,6 +44,15 @@ const verifySuccess = ()=>{
 | `isBackendCheck` | `boolean ` | **非必选**. 是否开启后端校验（开启后刷新拼图需要更改jigsawPosition参数，视图才会更新） |
 | `errHowTimesRefresh` | `number ` | **非必选**. 验证失败几次后重新刷新拼图，默认1次 |
 | `allowEroor` | `number ` | **非必选**. 允许误差，默认2像素 |
+
+## 推理拼图API 
+
+| 属性 | 类型     | 描述                |
+| :-------- | :------- | :------------------------- |
+| `backendImg` | `string` | **必选**. 背景图 |
+| `crossPosition` | `Array<number>` | **非必选**. 对换的拼图位置0~7，例如:[2,4] |
+| `isBackendCheck` | `boolean ` | **非必选**. 是否开启后端校验（开启后刷新拼图需要更改jigsawPosition参数，视图才会更新） |
+| `errHowTimesRefresh` | `number ` | **非必选**. 验证失败几次后重新刷新拼图，默认1次 |
 
 ## 事件
 
@@ -58,3 +66,5 @@ const verifySuccess = ()=>{
 
 ## 其他
  `背景图大小为 320*160，拼图大小为：60*60。如果需要自定义拼图位置，请计算好对应的坐标，以免显示超出背景图范围`
+
+

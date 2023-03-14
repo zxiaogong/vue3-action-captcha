@@ -1,3 +1,8 @@
+<script lang="ts">
+export default {
+  name:'slider-captcha'
+}
+</script>
 <template>
   <div class="slider-captcha-root">
     <div class="slider-captcha-content">
