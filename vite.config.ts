@@ -2,6 +2,7 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx';
+import Delete from "rollup-plugin-delete"
 import path from 'path'
 
 // https://vitejs.dev/config/
@@ -22,7 +23,14 @@ export default defineConfig({
         globals: {
           vue: 'Vue'
         }
-      }
+      },
+      plugins:[
+        //删除指定的图标文件
+        Delete({
+          targets:['dist/*.{ico,txt}'],
+          hook:'generateBundle'
+        })
+      ]
     }
   },
   test: {

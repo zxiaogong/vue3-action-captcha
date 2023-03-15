@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // import { SliderCaptcha ,DragCaptcha} from "./components/index";
 // import { SliderCaptcha } from "../public/lib/captcha.es";
-import backImg from "./imgs/1.jpg";
+import backImg from "../imgs/1.jpg";
 import {ref} from "vue"
 const testdata = ref([2,4])
 const verifySuccess = ()=>{
