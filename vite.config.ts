@@ -3,11 +3,20 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import Delete from "rollup-plugin-delete"
+import dts from "vite-plugin-dts"
 import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(), vueJsx()],
+  plugins: [
+    vue(), 
+    vueJsx(),
+    dts({
+      outputDir:"dist",
+      staticImport:true,
+      insertTypesEntry:true
+    })
+  ],
   build: {
     outDir: "dist/lib",
     lib: {

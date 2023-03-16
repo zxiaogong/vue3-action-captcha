@@ -1,13 +1,12 @@
 {
   "name": "vue3-action-captcha",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
     "test": "vitest",
-    "coverage": "vitest run --coverage",
-    "dts": "vue-tsc src/components/index.ts --emitDeclarationOnly --declaration"
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "vue": "^3.2.41"
@@ -32,10 +31,12 @@
   ],
   "main": "dist/lib/captcha.umd.js",
   "module": "dist/lib/captcha.es.js",
+  "types": "dist/captcha.es.d.ts",
   "exports": {
     ".": {
       "import": "./dist/lib/captcha.es.js",
       "require": "./dist/lib/captcha.umd.js"
-    }
+    },
+    "./dist/lib/style.css":"./dist/lib/style.csss"
   }
 }
