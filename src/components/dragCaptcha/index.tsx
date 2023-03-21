@@ -23,7 +23,7 @@ interface PictureDataType {
 }
 
 export default defineComponent({
-  name: 'drag-captcha',
+  name: 'Drag-captcha',
   props: {
     //背景图
     backendImg: {

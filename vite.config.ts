@@ -9,12 +9,12 @@ import path from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    vue(), 
+    vue(),
     vueJsx(),
     dts({
-      outputDir:"dist",
-      staticImport:true,
-      insertTypesEntry:true
+      outputDir: "dist",
+      staticImport: true,
+      insertTypesEntry: true
     })
   ],
   build: {
@@ -33,14 +33,18 @@ export default defineConfig({
           vue: 'Vue'
         }
       },
-      plugins:[
+      plugins: [
         //删除指定的图标文件
         Delete({
-          targets:['dist/*.{ico,txt}'],
-          hook:'generateBundle'
+          targets: ['dist/*.{ico,txt}'],
+          hook: 'generateBundle'
         })
       ]
     }
+  },
+  //打包移除console
+  esbuild: {
+    drop: ['console', 'debugger'],
   },
   test: {
     environment: 'happy-dom'

@@ -12,4 +12,4 @@ const verifyComponents = {
 }
 export default verifyComponents
 
-export { components }
+export * from "./index";

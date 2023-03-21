@@ -476,6 +476,6 @@ const drawJigsawPuzzle = (isDefect?: boolean): Promise<string> => {
 </style>
 <script lang="ts">
 export default {
-  name: 'slider-captcha'
+  name: 'Slider-captcha'
 }
 </script>

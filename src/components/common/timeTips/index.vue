@@ -3,7 +3,7 @@
     <div class="time-tips-root-content" :style="{
       height: props.state ? 20 + 'px' : 0,
     }">
-      <span v-show="props.state === 1">
+      <span style="color: #333" v-show="props.state === 1">
         验证通过:&nbsp;一共耗时
         <span style="color: #00c957">{{ takeUpTime }}s</span>
       </span>
