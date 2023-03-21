@@ -18,13 +18,16 @@ const verifyChange= (res:any,callback:(s:boolean)=>boolean)=>{
   setTimeout(() => {
     callback(true)
   }, 3000);
-}
+} 
 </script>
 
 <template>
   <!-- <slider-captcha :backendImg="backImg" @verifySuccess="verifySuccess" :isBackendCheck="true" @verifyChange="verifyChange"></slider-captcha> -->
   <!-- <SliderCaptcha :backendImg="backImg" @verifySuccess="verifySuccess" :isBackendCheck="true" @verifyChange="verifyChange"></SliderCaptcha> -->
-  <drag-captcha :backendImg="backImg" @verifySuccess="verifySuccess" @verifyRefresh="verifyRefresh" @verifyChange="verifyChange" :crossPosition="testdata"  :isBackendCheck="true"></drag-captcha>
+  <!-- <drag-captcha :backendImg="backImg" @verifySuccess="verifySuccess" @verifyRefresh="verifyRefresh" @verifyChange="verifyChange" :crossPosition="testdata"  :isBackendCheck="true"></drag-captcha> -->
+  <div style="margin-top: 200px;margin-left: 600px;">
+    <drag-captcha :backendImg="backImg"></drag-captcha>
+  </div>
 </template>
 
 <style scoped>

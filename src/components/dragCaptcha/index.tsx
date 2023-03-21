@@ -63,8 +63,8 @@ export default defineComponent({
       jigsawPuzzleList: []
     })
     let currentSelectIndex = -1
-    let offsetX = 0
-    let offsetY = 0
+    let mouseX = 0
+    let mouseY = 0
     let backupsOriginalImgInfo = {
       styles: {
         left: '',
@@ -86,6 +86,8 @@ export default defineComponent({
     let initImgSafe: PictureDataType[] = []
     let errNum = 0
     let isOver = true
+    let areaWidth = 0
+    let areaHeight = 0
 
     watch(props, () => {
       initVerifyData()
@@ -155,10 +157,14 @@ export default defineComponent({
       if (!isOver) {
         return
       }
+      areaWidth = Math.floor(minimum([(index % 4) * 80, 320]) / 80) + 1
+      areaHeight = Math.floor(index / 4) + 1
+      document.addEventListener("mousemove", dragImgBlock);
+      document.addEventListener("mouseup", putDownImgBlock);
       isOver = false
       tipRef.value.startTime()
-      offsetX = e.offsetX + 8
-      offsetY = e.offsetY + 8
+      mouseX = e.clientX + 8
+      mouseY = e.clientY + 8
       //重新记录操作参数
       operationParameter = {
         startX: e.clientX,
@@ -167,8 +173,6 @@ export default defineComponent({
         endY: 0,
       }
       currentSelectIndex = index
-      document.addEventListener("mousemove", dragImgBlock);
-      document.addEventListener("mouseup", putDownImgBlock);
       backupsOriginalImgInfo.index = index
       backupsOriginalImgInfo.styles = {
         left: pictureData.jigsawPuzzleList[index].styles.left,
@@ -189,23 +193,22 @@ export default defineComponent({
     }
     /**拖拽 */
     const dragImgBlock = (e: any) => {
-      const x = e.clientX
-      const y = e.clientY
+      const clientX = e.clientX + 8
+      const clientY = e.clientY + 8
+      const { x, y } = coordinate(currentSelectIndex)
+      // console.log(x, y)
       const tempPicInfo = pictureData.jigsawPuzzleList
-      tempPicInfo[currentSelectIndex].styles.left = x - offsetX + 'px'
-      tempPicInfo[currentSelectIndex].styles.top = y - offsetY + 'px'
-
-
-      const column = Math.floor(minimum([x, 319]) / 80)
-      const line = Math.floor(minimum([y, 159]) / 80)
-      const replaceIndex = line * 4 + column
-      if (replaceIndex !== backupsOriginalImgInfo.index) {
+      tempPicInfo[currentSelectIndex].styles.left = clientX - mouseX + x + 'px'
+      tempPicInfo[currentSelectIndex].styles.top = clientY - mouseY + y + 'px'
+      const column = Math.floor(minimum([clientX - 40 + areaWidth * 80 - mouseX, 319.9]) / 80)
+      const line = Math.floor(minimum([clientY - 40 + areaHeight * 80 - mouseY, 159.9]) / 80)
+      const replaceIndex = column + line * 4
+      if (replaceIndex > -1 && replaceIndex !== backupsOriginalImgInfo.index) {
         const beforeIndex = backupsOriginalImgInfo.index
         tempPicInfo[beforeIndex].styles = {
           ...tempPicInfo[beforeIndex].styles,
           ...backupsOriginalImgInfo.styles,
         }
-
         backupsOriginalImgInfo.styles = {
           left: tempPicInfo[replaceIndex].styles.left,
           top: tempPicInfo[replaceIndex].styles.top
@@ -215,12 +218,10 @@ export default defineComponent({
         tempPicInfo[replaceIndex].styles.left = x + 'px'
         tempPicInfo[replaceIndex].styles.top = y + 'px'
       }
-
       pictureData.jigsawPuzzleList = tempPicInfo
     }
     /**松开 */
     const putDownImgBlock = (e: any) => {
-
       const clientX = e.clientX
       const clientY = e.clientY
       /**记录操作参数 */
@@ -242,12 +243,12 @@ export default defineComponent({
       document.removeEventListener("mouseup", putDownImgBlock);
       //停止计时
       const processTime = tipRef.value.stopTime();
+      console.log(processTime)
       setTimeout(() => {
         tempPicInfoList[currentSelectIndex] = tempPicInfoList[replaceIndex]
         tempPicInfoList[replaceIndex] = currentPicData
         currentSelectIndex = -1
         pictureData.jigsawPuzzleList = tempPicInfoList
-        console.log(pictureData.jigsawPuzzleList)
         if (tempPicInfoList[cross1].key === cross2 && tempPicInfoList[cross2].key === cross1) {
           verifyState.value = 1
           if (props.isBackendCheck) {

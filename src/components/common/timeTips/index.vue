@@ -30,7 +30,7 @@ const takeUpTime = ref(0);
 let timerThread: any = null;
 let afterTime = 0;
 const startTime = () => {
-  timerThread = 0
+  afterTime = 0
   timerThread = setInterval(() => {
     afterTime += 100;
   }, 100);

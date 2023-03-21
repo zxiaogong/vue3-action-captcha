@@ -20,7 +20,7 @@ export default defineConfig({
   build: {
     outDir: "dist/lib",
     lib: {
-      entry: path.resolve(__dirname, 'src/components/index'),
+      entry: path.resolve(__dirname, 'src/components/export'),
       name: 'captcha',
       fileName: (format) => `captcha.${format}.js`
     },

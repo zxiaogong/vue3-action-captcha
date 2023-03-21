@@ -1,4 +1,4 @@
-import * as components from "./components";
+import * as components from "./index";
 import type { App } from "vue"
 import { forEach } from "lodash-es"
 

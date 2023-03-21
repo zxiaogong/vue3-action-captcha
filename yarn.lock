@@ -3234,6 +3234,13 @@ vue-tsc@^1.0.9:
     "@volar/vue-language-core" "1.2.0"
     "@volar/vue-typescript" "1.2.0"
 
+vue3-action-captcha@^0.0.7:
+  version "0.0.7"
+  resolved "http://localhost:4873/vue3-action-captcha/-/vue3-action-captcha-0.0.7.tgz#f6673e558f345d757d1b45439418e96377fad85f"
+  integrity sha512-xt1yZiVkzxDuXaHZ0bgyRJ0rBmDe8EXygoiUQTWYEO1ahQM4y8maCR1qzQTnDf1K4+Db81awondaVug/KVJ+Bw==
+  dependencies:
+    vue "^3.2.47"
+
 vue@^3.2.47:
   version "3.2.47"
   resolved "https://registry.npmjs.org/vue/-/vue-3.2.47.tgz#3eb736cbc606fc87038dbba6a154707c8a34cff0"

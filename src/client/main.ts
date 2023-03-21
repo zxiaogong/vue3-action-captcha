@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import verifyComponents from '../index'
-
-createApp(App).use(verifyComponents).mount('#app')
+import actionCaptcha from '../components/export'
+// import actionCaptcha from "vue3-action-captcha"
+// import "vue3-action-captcha/dist/lib/style.css"
+createApp(App).use(actionCaptcha).mount('#app')
