@@ -625,13 +625,7 @@ var gt = defineComponent({
       key: g.key,
       onMousedown: (v) => Y(v, u)
     }, null)), createVNode("div", {
-      style: {
-        width: "100%",
-        height: "20px",
-        position: "absolute",
-        left: 0,
-        bottom: 0
-      }
+      class: "time-tips-box"
     }, [createVNode(be, {
       ref: A,
       state: a.value
