@@ -9,7 +9,7 @@ export default defineClientConfig({
             const pageFun = pagesData.value[key] as Function
             return pageFun()
         }
-        )).then((pages)=>{
+        )).then((pages)=>{ 
             // console.log(pages)
         })
         app.use(actionCaptchafrom)
