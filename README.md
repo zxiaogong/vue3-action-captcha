@@ -31,7 +31,7 @@ const verifySuccess = ()=>{
   :backendImg="'https://raw.githubusercontent.com/zxiaogong/vue3-action-captcha/feature/src/imgs/1.jpg'"
   @verifySuccess="verifySuccess" />
 </template>
-
+ 
 
 ```
 
