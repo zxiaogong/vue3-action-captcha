@@ -3245,8 +3245,8 @@ vue-tsc@^1.0.9:
 
 vue3-action-captcha@^0.0.13:
   version "0.0.13"
-  resolved "http://localhost:4873/vue3-action-captcha/-/vue3-action-captcha-0.0.13.tgz#f1f8138afed983b050cb090583a2a6de311bfa50"
-  integrity sha512-JdAY2AyWLEw0JSrvUsycR0KvG/1RDRzbMvMqHhG8Rk9M96o3Yjhih7jD6NWqpfWtA6tweIkjnw9pUsEnfHVp9w==
+  resolved "https://registry.npmjs.org/vue3-action-captcha/-/vue3-action-captcha-0.0.13.tgz#7a09dc269b6d64f0faa846310ef1d2dde1bff6e3"
+  integrity sha512-DpEr3WKcZh7s5e1nx3kOsZBN3irV9iBJH1jtjLB6m9rWRPmhzFMpurX85FIIr6gFItKIuNpDDjkepWT/F6wvXA==
   dependencies:
     vue "^3.2.47"
 
