@@ -7,7 +7,7 @@
         验证通过:&nbsp;一共耗时
         <span style="color: #00c957">{{ takeUpTime }}s</span>
       </span>
-      <span v-show="props.state === 2">
+      <span style="color: #333" v-show="props.state === 2">
         验证失败:&nbsp;
         <span style="color: #e33">{{ props.errTip || "请重新验证" }}</span>
       </span>

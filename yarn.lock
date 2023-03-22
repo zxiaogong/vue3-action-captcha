@@ -1226,6 +1226,15 @@
     "@vuepress/core" "2.0.0-beta.61"
     prismjs "^1.29.0"
 
+"@vuepress/plugin-register-components@^2.0.0-beta.61":
+  version "2.0.0-beta.61"
+  resolved "https://registry.npmjs.org/@vuepress/plugin-register-components/-/plugin-register-components-2.0.0-beta.61.tgz#b7b6b2fe81c70e40e3fe965d18fef76c315941e5"
+  integrity sha512-3sbJbiY8pZ3/M4TMfyhIn+aGAlXz+xR57I5k4NQnekzJjDxSiCmaet6FjUeUChX6/eREkVBlitfDvXq4t45RKw==
+  dependencies:
+    "@vuepress/core" "2.0.0-beta.61"
+    "@vuepress/utils" "2.0.0-beta.61"
+    chokidar "^3.5.3"
+
 "@vuepress/plugin-theme-data@2.0.0-beta.61":
   version "2.0.0-beta.61"
   resolved "https://registry.npmjs.org/@vuepress/plugin-theme-data/-/plugin-theme-data-2.0.0-beta.61.tgz#f95a56c8ffb4cca8b559b4cf81ef665fe07523aa"
@@ -3234,10 +3243,10 @@ vue-tsc@^1.0.9:
     "@volar/vue-language-core" "1.2.0"
     "@volar/vue-typescript" "1.2.0"
 
-vue3-action-captcha@^0.0.7:
-  version "0.0.7"
-  resolved "http://localhost:4873/vue3-action-captcha/-/vue3-action-captcha-0.0.7.tgz#f6673e558f345d757d1b45439418e96377fad85f"
-  integrity sha512-xt1yZiVkzxDuXaHZ0bgyRJ0rBmDe8EXygoiUQTWYEO1ahQM4y8maCR1qzQTnDf1K4+Db81awondaVug/KVJ+Bw==
+vue3-action-captcha@^0.0.11:
+  version "0.0.11"
+  resolved "http://localhost:4873/vue3-action-captcha/-/vue3-action-captcha-0.0.11.tgz#135787827e886978c32029ec7a0aeb0cbcbb85f8"
+  integrity sha512-RasuHiK97EYiPiJ88x9YYXZxuJlS1LhmLriEW/+hVSSS3SutpBfU5q9WsC/4qVKoVi06TH6qVB3VJyi3wYDYcA==
   dependencies:
     vue "^3.2.47"
 

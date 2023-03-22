@@ -20,5 +20,5 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import { SliderCaptcha } from "vue3-action-captcha"
 import "vue3-action-captcha/dist/lib/style.css"
-createApp(App).component("SliderCaptcha", SliderCaptcha).mount('#app')
+createApp(App).component("Slider-captcha", SliderCaptcha).mount('#app')
 ```

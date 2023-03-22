@@ -1,4 +1,8 @@
 import { defineUserConfig, defaultTheme } from 'vuepress'
+import { registerComponentsPlugin } from '@vuepress/plugin-register-components'
+import { getDirname, path } from '@vuepress/utils'
+const __dirname = getDirname(import.meta.url)
+
 
 export default defineUserConfig({
   lang: 'zh-CN',
@@ -32,6 +36,14 @@ export default defineUserConfig({
       {
         text: '快速上手',
         link: '/redemFiles/getting-started.md',
+      },
+      {
+        text: '滑动拼图',
+        link: '/redemFiles/sliderCaptcha.md',
+      },
+      {
+        text: '推理拼图',
+        link: '/redemFiles/dragCaptcha.md',
       },
     ],
   }),
