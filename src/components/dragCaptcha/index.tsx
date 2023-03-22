@@ -302,10 +302,10 @@ export default defineComponent({
               )
             })
           }
-          <div style={{ width: '100%', height: '20px', position: 'absolute', left: 0, bottom: 0 }}>
-            <TimeTips ref={tipRef} state={verifyState.value}></TimeTips>
+          <div class="time-tips-box">
+            <TimeTips ref={tipRef} state={verifyState.value} />
           </div>
-          <RefreshBut onClick={() => onRefresh()}></RefreshBut>
+          <RefreshBut onClick={() => onRefresh()} />
         </div>
       )
     }

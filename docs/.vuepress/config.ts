@@ -1,10 +1,15 @@
 import { defineUserConfig, defaultTheme } from 'vuepress'
 import { registerComponentsPlugin } from '@vuepress/plugin-register-components'
 import { getDirname, path } from '@vuepress/utils'
-const __dirname = getDirname(import.meta.url)
+// const __dirname = getDirname(import.meta.url)
 
 
 export default defineUserConfig({
+  plugins: [
+    // registerComponentsPlugin({
+    //   componentsDir:path.resolve(__dirname, '/node_modules/vue3-action-captcha/dist/lib/captcha.es.js'),
+    // }),
+  ],
   lang: 'zh-CN',
   title: 'vue3 行为验证码',
   description: 'vue3 行为验证码',
