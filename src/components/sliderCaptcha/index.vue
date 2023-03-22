@@ -35,51 +35,58 @@
           </div>
         </div>
         <div class="slider-but-box">
+          <div class="slider-but-track">
+            <div class="slider-but-track-content">
+              <div v-if="butState.state === 0 || butState.state === 3" class="slider-static-but" :style="{
+                left: butState.left + 'px',
+                transition: !butState.isPress ? '0.3s' : '0s',
+              }" @mousedown="pressSliderBut">
+                <div class="slider-but">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                    class="bi bi-forward-fill" viewBox="0 -1 16 18">
+                    <path
+                      d="m9.77 12.11 4.012-2.953a.647.647 0 0 0 0-1.114L9.771 5.09a.644.644 0 0 0-.971.557V6.65H2v3.9h6.8v1.003c0 .505.545.808.97.557z" />
+                  </svg>
+                </div>
+              </div>
+              <div v-else-if="butState.state === 1" class="slider-static-but2" :style="{
+                left: butState.left + 'px',
+                transition: !butState.isPress ? '0.3s' : '0s',
+              }">
+                <div class="slider-suc-but">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check"
+                    viewBox="-1 -1 18 18">
+                    <path
+                      d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
+                  </svg>
+                </div>
+              </div>
+              <div v-else-if="butState.state === 2" class="slider-static-but3" :style="{
+                left: butState.left + 'px',
+                transition: !butState.isPress ? '0.3s' : '0s',
+              }">
+                <div class="slider-err-but">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x"
+                    viewBox="-1 -1 18 18">
+                    <path
+                      d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                  </svg>
+                </div>
+              </div>
+              <div class="slider-road" :style="{ 'pointer-events': butState.isPress ? 'all' : 'none' }">
+                <div class="slider-road-backend" :style="{
+                  backgroundColor: stateColor,
+                }"></div>
+              </div>
+            </div>
+          </div>
           <div class="slider-but-box-tip" :style="{
             color: !butState.isPress && butState.state !== 1 ? '#C7C7C7' : stateColor,
             border: !butState.isPress ? '1px solid #EBEBEB' : `1px solid ${stateColor}`
-          }">向右滑动滑块进行正确拼合</div>
-          <div v-if="butState.state === 0 || butState.state === 3" class="slider-static-but" :style="{
-            left: butState.left + 'px',
-            transition: !butState.isPress ? '0.3s' : '0s',
-          }" @mousedown="pressSliderBut">
-            <div class="slider-but">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                class="bi bi-forward-fill" viewBox="0 -1 16 18">
-                <path
-                  d="m9.77 12.11 4.012-2.953a.647.647 0 0 0 0-1.114L9.771 5.09a.644.644 0 0 0-.971.557V6.65H2v3.9h6.8v1.003c0 .505.545.808.97.557z" />
-              </svg>
-            </div>
-          </div>
-          <div v-else-if="butState.state === 1" class="slider-static-but2" :style="{
-            left: butState.left + 'px',
-            transition: !butState.isPress ? '0.3s' : '0s',
           }">
-            <div class="slider-suc-but">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check"
-                viewBox="-1 -1 18 18">
-                <path
-                  d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
-              </svg>
-            </div>
+            向右滑动滑块进行正确拼合
           </div>
-          <div v-else-if="butState.state === 2" class="slider-static-but3" :style="{
-            left: butState.left + 'px',
-            transition: !butState.isPress ? '0.3s' : '0s',
-          }">
-            <div class="slider-err-but">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x"
-                viewBox="-1 -1 18 18">
-                <path
-                  d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-              </svg>
-            </div>
-          </div>
-          <div class="slider-road" :style="{ 'pointer-events': butState.isPress ? 'all' : 'none' }">
-            <div class="slider-road-backend" :style="{
-              backgroundColor: stateColor,
-            }"></div>
-          </div>
+
         </div>
       </div>
     </div>
