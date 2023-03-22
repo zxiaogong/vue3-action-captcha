@@ -10,6 +10,7 @@ export default defineUserConfig({
     //   componentsDir:path.resolve(__dirname, '/node_modules/vue3-action-captcha/dist/lib/captcha.es.js'),
     // }),
   ],
+  base:"/vue3-action-captcha/",
   lang: 'zh-CN',
   title: 'vue3 行为验证码',
   description: 'vue3 行为验证码',
