@@ -1,7 +1,7 @@
 import { defineClientConfig, usePagesData } from '@vuepress/client'
-// import actionCaptchafrom from "vue3-action-captcha"
-import actionCaptchafrom from "./.cache/deps/vue3-action-captcha"
-import  "vue3-action-captcha/dist/lib/style.css"
+import actionCaptchafrom from "../../node_modules/vue3-action-captcha"
+// const actionCaptchafrom =  require('vue3-action-captcha')
+import  "../../node_modules/vue3-action-captcha/dist/lib/style.css"
 export default defineClientConfig({
     enhance({ app, router, siteData }) {
         const pagesData = usePagesData()

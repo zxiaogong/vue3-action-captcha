@@ -1,1 +1,1 @@
-export const siteData = JSON.parse("{\"base\":\"/\",\"lang\":\"zh-CN\",\"title\":\"vue3 行为验证码\",\"description\":\"vue3 行为验证码\",\"head\":[],\"locales\":{}}")
+export const siteData = JSON.parse("{\"base\":\"/vue3-action-captcha/\",\"lang\":\"zh-CN\",\"title\":\"vue3 行为验证码\",\"description\":\"vue3 行为验证码\",\"head\":[],\"locales\":{}}")

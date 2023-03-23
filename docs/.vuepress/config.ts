@@ -1,14 +1,15 @@
 import { defineUserConfig, defaultTheme } from 'vuepress'
 import { registerComponentsPlugin } from '@vuepress/plugin-register-components'
 import { getDirname, path } from '@vuepress/utils'
+import { viteBundler } from '@vuepress/bundler-vite'
 // const __dirname = getDirname(import.meta.url)
 
 
 export default defineUserConfig({
   plugins: [
-    // registerComponentsPlugin({
-    //   componentsDir:path.resolve(__dirname, '/node_modules/vue3-action-captcha/dist/lib/captcha.es.js'),
-    // }),
+    registerComponentsPlugin({
+      componentsDir:path.resolve(__dirname, '/node_modules/vue3-action-captcha'),
+    }),
   ],
   base:"/vue3-action-captcha/",
   lang: 'zh-CN',
@@ -28,16 +29,6 @@ export default defineUserConfig({
       {
         text: '介绍',
         link: '/',
-        // children: [
-        //   // SidebarItem
-        //   {
-        //     text: 'github',
-        //     link: 'https://github.com',
-        //     children: [],
-        //   },
-        //   // 字符串 - 页面文件路径
-        //   '/foo/bar.md',
-        // ],
       },
       {
         text: '快速上手',
@@ -52,5 +43,7 @@ export default defineUserConfig({
         link: '/redemFiles/dragCaptcha.md',
       },
     ],
+    
   }),
+  
 })

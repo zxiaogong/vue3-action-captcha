@@ -5,7 +5,8 @@ import clientConfig3 from '/Users/zlg/Desktop/myProject/vue3-action-captcha/node
 import clientConfig4 from '/Users/zlg/Desktop/myProject/vue3-action-captcha/node_modules/@vuepress/plugin-nprogress/lib/client/config.js'
 import clientConfig5 from '/Users/zlg/Desktop/myProject/vue3-action-captcha/node_modules/@vuepress/plugin-theme-data/lib/client/config.js'
 import clientConfig6 from '/Users/zlg/Desktop/myProject/vue3-action-captcha/node_modules/@vuepress/theme-default/lib/client/config.js'
-import clientConfig7 from '/Users/zlg/Desktop/myProject/vue3-action-captcha/docs/.vuepress/client.ts'
+import clientConfig7 from '/Users/zlg/Desktop/myProject/vue3-action-captcha/docs/.vuepress/.temp/register-components/clientConfig.129da5ae.js'
+import clientConfig8 from '/Users/zlg/Desktop/myProject/vue3-action-captcha/docs/.vuepress/client.ts'
 
 export const clientConfigs = [
   clientConfig0,
@@ -16,4 +17,5 @@ export const clientConfigs = [
   clientConfig5,
   clientConfig6,
   clientConfig7,
+  clientConfig8,
 ]
