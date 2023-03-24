@@ -88,6 +88,7 @@ export default defineComponent({
     let isOver = true
     let areaWidth = 0
     let areaHeight = 0
+    let verifyOver = false
 
     watch(props, () => {
       initVerifyData()
@@ -258,6 +259,7 @@ export default defineComponent({
             }, (result: boolean | undefined) => {
               if (result) {
                 emit("verifySuccess")
+                verifyOver = true
               } else {
                 emit("verifyError")
                 errLaterRefreshImg()
@@ -265,6 +267,7 @@ export default defineComponent({
             })
           } else {
             emit("verifySuccess")
+            verifyOver = true
           }
         } else {
           emit("verifyError");
@@ -289,8 +292,10 @@ export default defineComponent({
 
     }
     const onRefresh = () => {
-      emit('verifyRefresh')
-      initVerifyData()
+      if (!verifyOver) {
+        emit('verifyRefresh')
+        initVerifyData()
+      }
     }
     return () => {
       return (

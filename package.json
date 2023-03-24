@@ -1,6 +1,6 @@
 {
   "name": "vue3-action-captcha",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
@@ -29,7 +29,7 @@
     "vite-plugin-dts": "^2.1.0",
     "vitest": "^0.29.2",
     "vue-tsc": "^1.0.9",
-    "vue3-action-captcha": "^0.0.13",
+    "vue3-action-captcha": "^0.0.15",
     "vuepress": "^2.0.0-beta.61",
     "vuepress-plugin-typescript": "^0.3.1"
   },

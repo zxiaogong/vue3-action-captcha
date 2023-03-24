@@ -3455,10 +3455,10 @@ vue-tsc@^1.0.9:
     "@volar/vue-language-core" "1.2.0"
     "@volar/vue-typescript" "1.2.0"
 
-vue3-action-captcha@^0.0.13:
-  version "0.0.13"
-  resolved "https://registry.npmjs.org/vue3-action-captcha/-/vue3-action-captcha-0.0.13.tgz#7a09dc269b6d64f0faa846310ef1d2dde1bff6e3"
-  integrity sha512-DpEr3WKcZh7s5e1nx3kOsZBN3irV9iBJH1jtjLB6m9rWRPmhzFMpurX85FIIr6gFItKIuNpDDjkepWT/F6wvXA==
+vue3-action-captcha@^0.0.15:
+  version "0.0.15"
+  resolved "https://registry.npmjs.org/vue3-action-captcha/-/vue3-action-captcha-0.0.15.tgz#8facf14d5835273b83b9f61b0291b95792f0d0bf"
+  integrity sha512-gp8oaVckDj7o0Ygs2GuUWKJfStvGdYJwTaub43lg7+F1k61ezLxXrzT5g3cNEIhBf777v4oVAASxZCkN+pgLMA==
   dependencies:
     vue "^3.2.47"
 
