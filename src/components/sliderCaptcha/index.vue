@@ -98,7 +98,6 @@ import {
   reactive,
   ref,
   onBeforeMount,
-  defineProps,
   PropType,
   defineEmits,
   watch,
@@ -322,7 +321,7 @@ const releaseSliderBut = async () => {
     }
     /**调用对应结果 */
     if ((props.isBackendCheck && isSuccess) || !props.isBackendCheck) {
-      tipRef.value.showTip();
+      tipRef.value.stopTime();
       butState.state = 1;
       emits("verifySuccess");
     } else {

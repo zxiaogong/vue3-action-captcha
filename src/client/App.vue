@@ -26,6 +26,7 @@ const verifyChange= (res:any,callback:(s:boolean)=>boolean)=>{
   <!-- <SliderCaptcha :backendImg="backImg" @verifySuccess="verifySuccess" :isBackendCheck="true" @verifyChange="verifyChange"></SliderCaptcha> -->
   <!-- <drag-captcha :backendImg="backImg" @verifySuccess="verifySuccess" @verifyRefresh="verifyRefresh" @verifyChange="verifyChange" :crossPosition="testdata"  :isBackendCheck="true"></drag-captcha> -->
   <div style="margin-top: 200px;margin-left: 600px;">
+    <!-- <drag-captcha :backendImg="backImg" ></drag-captcha>  -->
     <Slider-captcha :backendImg="backImg"></Slider-captcha>
   </div>
 </template>

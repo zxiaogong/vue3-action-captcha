@@ -16,7 +16,7 @@ yarn add vue3-action-captcha
 
 ## 文档
 
-[文档](https://zxiaogong.github.io/vue3-action-captcha/)
+[https://zxiaogong.github.io/vue3-action-captcha/](https://zxiaogong.github.io/vue3-action-captcha/)
 
 ## 其他
  `背景图大小为 320*160，拼图大小为：60*60。如果需要自定义拼图位置，请计算好对应的坐标，以免显示超出背景图范围`

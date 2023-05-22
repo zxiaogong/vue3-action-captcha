@@ -1,6 +1,6 @@
 {
   "name": "vue3-action-captcha",
-  "version": "0.0.15",
+  "version": "0.1.0",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
@@ -45,5 +45,13 @@
       "require": "./dist/lib/captcha.umd.js"
     },
     "./dist/lib/style.css": "./dist/lib/style.css"
+  },
+  "keywords": [
+    "vue3-action-captcha",
+    "action-captcha"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/zxiaogong/vue3-action-captcha"
   }
 }

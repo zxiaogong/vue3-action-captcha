@@ -1,35 +1,29 @@
 {
-  "hash": "60db30f9",
-  "browserHash": "252b5257",
+  "hash": "b881a605",
+  "browserHash": "452e79f9",
   "optimized": {
     "@vue/devtools-api": {
       "src": "../../../../node_modules/@vue/devtools-api/lib/esm/index.js",
       "file": "@vue_devtools-api.js",
-      "fileHash": "79d68931",
+      "fileHash": "00f7bf1d",
       "needsInterop": false
     },
     "@vuepress/shared": {
       "src": "../../../../node_modules/@vuepress/shared/dist/index.js",
       "file": "@vuepress_shared.js",
-      "fileHash": "9af015c0",
+      "fileHash": "0f83ec72",
       "needsInterop": false
     },
     "vue": {
       "src": "../../../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "9ddb2fe2",
+      "fileHash": "588ff9a1",
       "needsInterop": false
     },
     "vue-router": {
       "src": "../../../../node_modules/vue-router/dist/vue-router.esm-bundler.js",
       "file": "vue-router.js",
-      "fileHash": "239d55bc",
-      "needsInterop": false
-    },
-    "vue3-action-captcha": {
-      "src": "../../../../node_modules/vue3-action-captcha/dist/lib/captcha.es.js",
-      "file": "vue3-action-captcha.js",
-      "fileHash": "458800b2",
+      "fileHash": "b4f11c5c",
       "needsInterop": false
     }
   },
