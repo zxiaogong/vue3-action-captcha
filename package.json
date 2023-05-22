@@ -1,6 +1,8 @@
 {
   "name": "vue3-action-captcha",
-  "version": "0.1.0",
+  "version": "0.1.1",
+  "author": "zxiaogong",
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
